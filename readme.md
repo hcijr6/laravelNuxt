@@ -1,5 +1,5 @@
-# ROADMAP
-## BRANCH onlyAuth
+# **ROADMAP**
+## BRANCH -- **onlyAuth**
 ### BACK
 > **V1**
 - [x] SET UP LAST LARAVEL VERSION
@@ -30,7 +30,7 @@
 ### DEPLOY
 - [ ] V1
 - [ ] V2
-## BRANCH authTranslations
+## BRANCH -- **authTranslations**
 ### BACK
 > **V1**
 - [ ] ?? SET UP INTERNATIONALIZATION OF API MESSAGE (SERVER / CLIENT)
