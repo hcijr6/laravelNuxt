@@ -1,17 +1,16 @@
 # ROADMAP
-
 ## BRANCH onlyAuth
-
 ### BACK
-
+> **V1**
 - [x] SET UP LAST LARAVEL VERSION
 - [x] SET UP ENV
 - [x] SET UP SANCTUM API
 - [x] SET UP AUTH API ROUTES AND TEST API AUTH
-- [x] SET UP USER CRUD API CONTROLLER InfyOmLabs/laravel-generator
-
+- [x] SET UP USER CRUD API CONTROLLER ?? InfyOmLabs/laravel-generator
+- [ ] SET UP GENERAL MODEL RULES
+> **V2**
 ### FRONTEND
-
+> **V1**
 - [x] SET UP LAST NUXT3 VERSION
 - [x] SET UP ENV
 - [x] ADD $larafetch,submitRequest()
@@ -22,17 +21,30 @@
 - [x] CREATE PROFILE (AUTH)
 - [x] CREATE LOGIN 
 - [x] REGISTER 
-- [] EMAIL VERIFICATION
 - [x] AND FORGOT PASSWORD
-
+- [ ] EMAIL VERIFICATION
+- [ ] SET UP HTML + JS BASIC VERIFICATIONS EXPORTED FROM USER MODEL RULES TO ALL AUTH PAGES
+> **V2**
+- [ ] SET UP NAVIGATION (BREADCRUMBS) 
+- [ ] SETUP NOTIFICATION COMPONENTS
+### DEPLOY
+- [ ] V1
+- [ ] V2
 ## BRANCH authTranslations
-
 ### BACK
+> **V1**
 - [ ] ?? SET UP INTERNATIONALIZATION OF API MESSAGE (SERVER / CLIENT)
-- [ ] SET UP Post Migration title,description,user_id
-- [ ] SET UP Post MODEL CRUD API CONTROLLER InfyOmLabs/laravel-generator
+- [ ] SET UP Post Migration title,description,user_id,image
+- [ ] SET UP Post MODEL CRUD API CONTROLLER ?? InfyOmLabs/laravel-generator
 - [ ] SET UP INTERNATIONALIZATION for Post content
-
+> **V2**
 ### FRONT
+> **V1**
 - [ ] ?? SET UP INTERNATIONALIZATION OF API MESSAGE (SERVER / CLIENT)
 - [ ] SET UP CRUD WITH INTERNATIONALIZATION
+- [ ] SET POSTS ARCHIVE PAGE
+- [ ] SET POSTS SINGLE PAGE
+> **V2**
+### DEPLOY
+- [ ] V1
+- [ ] V2

@@ -3,12 +3,22 @@
     role="status"
     :class="{
       hidden: !loading,
+      active: loading,
     }"
   >
-    <div class="loader flex gap-2 h-5 items-center justify-center w-20">
-      <div class="w-[7px] h-[7px] bg-white rounded-lg animate-pulse"></div>
-      <div class="w-[7px] h-[7px] bg-white rounded-lg animate-pulse"></div>
-      <div class="w-[7px] h-[7px] bg-white rounded-lg animate-pulse"></div>
+    <div class="flex items-center justify-center w-20 h-5 gap-2 loader">
+      <div
+        class="w-[7px] h-[7px] bg-white rounded-lg"
+        :class="{ 'animate-pulse': loading }"
+      ></div>
+      <div
+        class="w-[7px] h-[7px] bg-white rounded-lg"
+        :class="{ 'animate-pulse': loading }"
+      ></div>
+      <div
+        class="w-[7px] h-[7px] bg-white rounded-lg"
+        :class="{ 'animate-pulse': loading }"
+      ></div>
     </div>
     <span class="sr-only">Loading...</span>
   </div>
@@ -21,19 +31,19 @@ export default {
 </script>
 
 <style>
-.loader div {
+.active > .loader div {
   animation-duration: 1s;
 }
 
-.loader div:first-child {
+.active > .loader div:first-child {
   animation-delay: 0.2s;
 }
 
-.loader div:nth-child(2) {
+.active > .loader div:nth-child(2) {
   animation-delay: 0.4s;
 }
 
-.loader div:nth-child(3) {
+.active > .loader div:nth-child(3) {
   animation-delay: 0.6s;
 }
 </style>

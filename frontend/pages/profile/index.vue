@@ -1,43 +1,57 @@
 <template>
   <div
-    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-20 text-center lg:pt-32"
+    class="px-4 pt-20 pb-16 mx-auto text-center max-w-7xl sm:px-6 lg:px-8 lg:pt-32"
   >
     <h1
-      class="mx-auto max-w-4xl text-5xl font-medium tracking-tight text-gray-800 sm:text-7xl"
+      class="max-w-4xl mx-auto text-5xl font-medium tracking-tight text-gray-800 sm:text-7xl"
     >
       Private
-      <span class="relative whitespace-nowrap"
-        ><span class="mx-5 underline"
-          >{{ authStore.user?.name }} </span
-        ></span
+      <span class="relative"
+        ><span class="mx-5 underline break-words"
+          >{{ authStore.user?.name }}
+        </span></span
       >
-      page that requires auth.
+      profile page that requires auth.
     </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+    <p class="max-w-2xl mx-auto mt-6 text-lg tracking-tight text-slate-700">
       Streamline your web development with our cutting-edge template designed
-      for Laravel 10 and Nuxt 3. Save precious time and maximize your
-      productivity with our sophisticated, turnkey solution designed by expert
-      developers.
+      for
+      <a
+        href="https://laravel.com/"
+        class="font-semibold text-[#FF2D20] underline"
+        >Laravel 10</a
+      >
+      and
+      <a href="https://nuxt.com/" class="font-semibold text-[#00DC82] underline"
+        >Nuxt 3</a
+      >
+      . Save precious time and maximize your productivity with our
+      sophisticated, turnkey solution designed by expert developers.
     </p>
-    <div class="mt-10 flex justify-center gap-x-6">
+    <p
+      class="max-w-2xl mx-auto mt-6 text-lg font-semibold tracking-tight text-slate-700"
+    >
+      Actual middleware: Auth
+    </p>
+    <div class="flex justify-center mt-10 gap-x-6">
       <button
         v-if="authStore.isLoggedIn"
         @click="logout()"
-        class="group inline-flex items-center justify-center rounded-lg py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900"
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900"
       >
         Logout
       </button>
       <NuxtLink
         v-else
         to="/login"
-        class="group inline-flex items-center justify-center rounded-lg py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900"
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-slate-900 hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900"
       >
         Login
       </NuxtLink>
 
       <NuxtLink
         to="/"
-        class="group inline-flex items-center justify-center rounded-lg py-2 px-4 text-sm font-semibold transition-all ease-in-out border hover:border-gray-800 text-gray-800"
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-gray-800 transition-all ease-in-out border rounded-lg group hover:border-gray-800"
       >
         Home Page
       </NuxtLink>

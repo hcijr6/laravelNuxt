@@ -1,18 +1,18 @@
 <template>
   <div class="grid min-h-screen md:grid-cols-2">
-    <div class="h-full w-full">
+    <div class="w-full h-full">
       <div
-        class="flex h-full items-center justify-center px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
+        class="flex items-center justify-center h-full px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
       >
-        <div class="max-w-md flex-grow">
-          <div class="w-full flex mb-4">
+        <div class="flex-grow max-w-md">
+          <div class="flex w-full mb-4">
             <NuxtLink
-              class="bg-white border p-3 rounded-lg transition-all ease-in-out hover:border-gray-800"
+              class="p-3 transition-all ease-in-out bg-white border rounded-lg hover:border-gray-800"
               to="/"
-              ><IconsTest class="h-8 w-8 fill-gray-800"></IconsTest
+              ><IconsTest class="w-8 h-8 fill-gray-800"></IconsTest
             ></NuxtLink>
           </div>
-          <div class="mt-4 flex w-full flex-col gap-2">
+          <div class="flex flex-col w-full gap-2 mt-4">
             <div class="text-2xl font-medium">
               <h1 slot="header" class="text-2xl font-medium">Welcome to Hex</h1>
             </div>
@@ -20,7 +20,7 @@
               Hex helps you start building, managing and sharing your Nuxt App
               in minutes, not days.
             </p>
-            <div class="mt-4 flex flex-col gap-4">
+            <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
                 <div class="w-full">
                   <label
@@ -32,7 +32,7 @@
                     </div>
                   </label>
                   <div
-                    class="flex w-full rounded-md text-sm shadow-sm duration-200 mt-2"
+                    class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
                     <input
                       type="text"
@@ -48,7 +48,7 @@
                   <span
                     v-if="validations.name"
                     v-for="message in validations.name"
-                    class="text-red-500 text-xs w-full"
+                    class="w-full text-xs text-red-500"
                     >{{ message }}</span
                   >
                 </div>
@@ -62,7 +62,7 @@
                     </div>
                   </label>
                   <div
-                    class="flex w-full rounded-md text-sm shadow-sm duration-200 mt-2"
+                    class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
                     <input
                       type="text"
@@ -78,7 +78,7 @@
                   <span
                     v-if="validations.email"
                     v-for="message in validations.email"
-                    class="text-red-500 text-xs w-full"
+                    class="w-full text-xs text-red-500"
                     >{{ message }}</span
                   >
                 </div>
@@ -92,7 +92,7 @@
                     </div>
                   </label>
                   <div
-                    class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
+                    class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
                     <input
                       type="password"
@@ -108,7 +108,7 @@
                   <span
                     v-if="validations.password"
                     v-for="message in validations.password"
-                    class="text-red-500 text-xs w-full"
+                    class="w-full text-xs text-red-500"
                     >{{ message }}</span
                   >
                 </div>
@@ -122,7 +122,7 @@
                     </div>
                   </label>
                   <div
-                    class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
+                    class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
                     <input
                       type="password"
@@ -149,7 +149,7 @@
                 <div class="text-sm text-gray-800">
                   Already have an account?
                   <NuxtLink
-                    class="text-primary font-medium underline"
+                    class="font-medium underline text-primary"
                     to="/login"
                     >Sign In</NuxtLink
                   >
