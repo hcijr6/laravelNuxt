@@ -63,7 +63,7 @@ export async function $larafetch<T, R extends ResponseType = "json">(
       await navigateTo("/login");
     }
     if (redirectIfNotVerified && [409].includes(error?.response?.status)) {
-      await navigateTo("/account-verify");
+      await navigateTo("/verify-email");
     }
     throw error;
   }

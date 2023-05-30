@@ -5,13 +5,7 @@
     <h1
       class="max-w-4xl mx-auto text-5xl font-medium tracking-tight text-primary sm:text-7xl"
     >
-      Private
-      <span class="relative"
-        ><span class="underline break-words"
-          >{{ authStore.user?.name }}
-        </span></span
-      >
-      profile page that requires auth.
+      Private page that requires an verified email.
     </h1>
     <p class="max-w-2xl mx-auto mt-6 text-lg tracking-tight text-slate-700">
       Streamline your web development with our cutting-edge template designed
@@ -31,7 +25,7 @@
     <p
       class="max-w-2xl mx-auto mt-6 text-lg font-semibold tracking-tight text-slate-700"
     >
-      Actual middleware: Auth
+      Actual middleware: verifiedEmail
     </p>
     <div class="flex justify-center gap-3 mt-10">
       <NuxtLink
@@ -41,10 +35,10 @@
         Home
       </NuxtLink>
       <NuxtLink
-        to="/profile/email"
+        to="/profile"
         class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-all ease-in-out bg-primary rounded-lg bg group"
       >
-        Email Config
+        Profile page
       </NuxtLink>
     </div>
   </div>
@@ -55,10 +49,15 @@ export default {
   setup() {
     definePageMeta({
       layout: "main-layout",
-      middleware: ["auth"],
+      middleware: ["verified-email"],
     });
     const authStore = useAuthStore();
     return { authStore };
+  },
+  methods: {
+    async logout() {
+      var response = await this.authStore.logout();
+    },
   },
 };
 </script>

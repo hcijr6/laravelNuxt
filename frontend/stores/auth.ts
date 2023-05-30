@@ -8,7 +8,8 @@ type User = {
 export const useAuthStore = defineStore("auth_store", {
   state: () => ({
     user: null,
-    forgotPasswordEmail:null
+    forgotPasswordEmail: null,
+    nextVerification: null
   }),
   actions: {
     async login(credentials: object) {
@@ -43,14 +44,26 @@ export const useAuthStore = defineStore("auth_store", {
       };
       return await submitRequest($larafetch("/reset-password", petition));
     },
-    async checkIfSessionAuthorized() {
+    async fetchCurrentUser(redirect = false) {
       try {
         var response: any = await $larafetch("/api/v1/user", {
           response: true,
         });
         console.log(response)
+
         this.user = response;
         return true;
+      } catch (error) {
+        return false;
+      }
+    },
+    async sendEmailNotification() {
+      try {
+        var response: any = await $larafetch("/email/verification-notification", {
+          response: true,
+          method: "post"
+        });
+        return response;
       } catch (error) {
         return false;
       }

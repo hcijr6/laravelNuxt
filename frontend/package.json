@@ -21,6 +21,9 @@
   "dependencies": {
     "@heroicons/vue": "^2.0.17",
     "@pinia/nuxt": "^0.4.9",
-    "pinia": "^2.0.35"
+    "class-variance-authority": "^0.6.0",
+    "laravel-precognition-vue": "^0.2.1",
+    "pinia": "^2.0.35",
+    "validator": "^13.9.0"
   }
 }

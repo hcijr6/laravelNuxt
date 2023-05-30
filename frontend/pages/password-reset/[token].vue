@@ -7,9 +7,9 @@
         <div class="max-w-md flex-grow">
           <div class="w-full flex mb-4">
             <NuxtLink
-              class="bg-white border p-3 rounded-lg transition-all ease-in-out hover:border-gray-800"
+              class="bg-white border p-3 rounded-lg transition-all ease-in-out hover:border-primary"
               to="/"
-              ><IconsTest class="h-8 w-8 fill-gray-800"></IconsTest
+              ><IconsTest class="h-8 w-8 fill-primary"></IconsTest
             ></NuxtLink>
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
@@ -19,12 +19,12 @@
                 success
               }}</span>
             </div>
-            <p class="text-gray-800">
+            <p class="text-primary">
               Please go to login and type your brand new password.
             </p>
             <NuxtLink
               to="/login"
-              class="focus:bg-gray-800 mt-2 hover:bg-gray-800 bg-gray-800 block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
+              class="focus:bg-primary mt-2 hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
             >
               <div class="relative flex items-center justify-center">
                 <div :class="{ hidden: sendingForm }">Sign In</div>
@@ -43,13 +43,13 @@
                 >{{ message }}</span
               >
             </div>
-            <p class="text-gray-800">
+            <p class="text-primary">
               Please re-check your email for the correct link or restart the
               process.
             </p>
             <NuxtLink
               to="/forgot-password"
-              class="focus:bg-gray-800 hover:bg-gray-800 bg-gray-800 block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
+              class="focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
             >
               <div class="relative flex items-center justify-center">
                 <div :class="{ hidden: sendingForm }">Restart process</div>
@@ -62,7 +62,7 @@
                 Set your new Password for {{ form.email }}
               </h1>
             </div>
-            <p class="text-gray-800">
+            <p class="text-primary">
               Please use a password diferent to the previous one.
             </p>
             <div class="mt-4 flex flex-col gap-4">
@@ -70,7 +70,7 @@
                 <div class="w-full">
                   <label
                     for="password"
-                    class="block text-sm font-medium text-gray-800"
+                    class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
                       Password
                       <div></div>
@@ -100,7 +100,7 @@
                 <div class="w-full">
                   <label
                     for="password"
-                    class="block text-sm font-medium text-gray-800"
+                    class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
                       Confirm Password
                       <div></div>
@@ -123,7 +123,7 @@
                 </div>
                 <button
                   @click="resetPassword()"
-                  class="mt-2 focus:bg-gray-800 hover:bg-gray-800 bg-gray-800 block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
+                  class="mt-2 focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
                   :disabled="sendingForm"
                 >
                   <div class="relative flex items-center justify-center">
@@ -137,7 +137,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-gray-800"></div>
+    <div class="bg-primary"></div>
   </div>
 </template>
 

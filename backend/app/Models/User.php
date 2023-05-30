@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Validation\Rules;
 
 class User extends Authenticatable
 {
@@ -40,5 +41,16 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * The validation rules for the model.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+        'password' => ['required', 'confirmed', 'min:8'],
     ];
 }

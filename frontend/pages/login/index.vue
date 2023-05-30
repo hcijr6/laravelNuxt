@@ -1,41 +1,46 @@
 <template>
   <div class="grid min-h-screen md:grid-cols-2">
-    <div class="h-full w-full">
+    <div class="w-full h-full">
       <div
-        class="flex h-full items-center justify-center px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
+        class="flex items-center justify-center h-full px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
       >
-        <div class="max-w-md flex-grow">
-          <div class="w-full flex mb-4">
-            <NuxtLink class="bg-white border p-3 rounded-lg  transition-all ease-in-out hover:border-gray-800 " to="/"><IconsTest class="h-8 w-8 fill-gray-800"></IconsTest></NuxtLink>
+        <div class="flex-grow max-w-md">
+          <div class="flex w-full mb-4">
+            <NuxtLink
+              class="p-3 transition-all ease-in-out bg-white border rounded-lg hover:border-primary"
+              to="/"
+              ><IconsTest class="w-8 h-8 fill-primary"></IconsTest
+            ></NuxtLink>
           </div>
-          <div class="mt-4 flex w-full flex-col gap-2">
+          <div class="flex flex-col w-full gap-2 mt-4">
             <div class="text-2xl font-medium">
               <!-- <HelloWorld></HelloWorld> -->
               <h1 slot="header" class="text-2xl font-medium">Welcome to Hex</h1>
             </div>
-            <p slot="description" class="text-gray-800">
+            <p slot="description" class="text-primary">
               Hex helps you start building, managing and sharing your Nuxt App
               in minutes, not days.
             </p>
-            <div class="mt-4 flex flex-col gap-4">
+            <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
                 <div class="w-full">
                   <label
                     for="email"
-                    class="block text-sm font-medium text-gray-800"
+                    class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
                       Email
                       <div></div>
                     </div>
                   </label>
                   <div
-                    class="flex w-full rounded-md text-sm shadow-sm duration-200 mt-2"
+                    class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
                     <input
                       type="text"
                       name="mail"
                       autocomplete="off"
-                      v-model="form.email"
+                      v-model.lazy="form.email"
+                      @change="handleInput('email', form.email)"
                       required=""
                       spellcheck="false"
                       placeholder="Enter your email"
@@ -45,27 +50,28 @@
                   <span
                     v-if="validations.email"
                     v-for="message in validations.email"
-                    class="text-red-500 text-xs w-full"
+                    class="w-full text-xs text-red-500"
                     >{{ message }}</span
                   >
                 </div>
                 <div class="w-full">
                   <label
                     for="password"
-                    class="block text-sm font-medium text-gray-800"
+                    class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
                       Password
                       <div></div>
                     </div>
                   </label>
                   <div
-                    class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
+                    class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
                     <input
                       type="password"
                       name="password"
                       autocomplete="off"
-                      v-model="form.password"
+                      v-model.lazy="form.password"
+                      @change="handleInput('password', form.password)"
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
@@ -75,12 +81,12 @@
                   <span
                     v-if="validations.password"
                     v-for="message in validations.password"
-                    class="text-red-500 text-xs w-full"
+                    class="w-full text-xs text-red-500"
                     >{{ message }}</span
                   >
-                  <div class="text-sm text-gray-800 mt-1">
+                  <div class="mt-1 text-sm text-primary">
                     <span
-                      class="text-primary font-medium underline cursor-pointer"
+                      class="font-medium underline cursor-pointer text-primary"
                       @click="forgotPassword"
                       >Forgot Password?</span
                     >
@@ -89,7 +95,7 @@
                 <button
                   @click="thisLogin"
                   :disabled="sendingForm"
-                  class="mt-2 bg-primary focus:bg-gray-800 hover:bg-gray-800 bg-gray-800 block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
+                  class="mt-2 bg-primary focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
                 >
                   <div class="relative flex items-center justify-center">
                     <div :class="{ hidden: sendingForm }">Sign In</div>
@@ -97,10 +103,10 @@
                   </div>
                 </button>
                 <div class="flex">
-                  <div class="text-sm text-gray-800">
+                  <div class="text-sm text-primary">
                     You don't have an account?
                     <NuxtLink
-                      class="text-primary font-medium underline"
+                      class="font-medium underline text-primary"
                       to="/register"
                       >Sign up
                     </NuxtLink>
@@ -112,7 +118,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-gray-800"></div>
+    <div class="bg-primary"></div>
   </div>
 </template>
 
@@ -122,12 +128,10 @@ export default {
   setup() {
     definePageMeta({
       middleware: ["no-auth"],
-      
     });
     const authStore = useAuthStore();
     return { authStore };
   },
-
   data() {
     return {
       form: {
@@ -136,12 +140,14 @@ export default {
       },
       validations: [],
       sendingForm: false,
+      className: "Auth\\LoginRequest",
+      validationSource: "Request",
     };
   },
   methods: {
     async forgotPassword() {
       this.authStore.forgotPasswordEmail = this.form.email;
-      navigateTo('/forgot-password');
+      navigateTo("/forgot-password");
     },
     async thisLogin() {
       this.sendingForm = true;
@@ -150,7 +156,7 @@ export default {
         password: this.form.password,
       };
       var response = await this.authStore.login(credentials);
-      this.resetErrors();
+      resetErrors(this);
       if (response.data) {
         this.authStore.user = response.data;
         navigateTo("/");
@@ -159,8 +165,10 @@ export default {
       }
       this.sendingForm = false;
     },
-    resetErrors() {
-      this.validations = [];
+    async handleInput(field, data) {
+      this.sendingForm = true;
+      checkSingleField(this, field, data);
+      this.sendingForm = false;
     },
   },
 };
