@@ -13,7 +13,7 @@
       >
       profile page that requires auth.
     </h1>
-    <p class="max-w-2xl mx-auto mt-6 text-lg tracking-tight text-slate-700">
+    <p class="max-w-2xl mx-auto mt-6 text-lg tracking-tight text-primary">
       Streamline your web development with our cutting-edge template designed
       for
       <a
@@ -29,23 +29,13 @@
       sophisticated, turnkey solution designed by expert developers.
     </p>
     <p
-      class="max-w-2xl mx-auto mt-6 text-lg font-semibold tracking-tight text-slate-700"
+      class="max-w-2xl mx-auto mt-6 text-lg font-semibold tracking-tight text-primary"
     >
       Actual middleware: Auth
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <NuxtLink
-        to="/"
-        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-primary transition-all ease-in-out border rounded-lg group hover:border-primary"
-      >
-        Home
-      </NuxtLink>
-      <NuxtLink
-        to="/profile/email"
-        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-all ease-in-out bg-primary rounded-lg bg group"
-      >
-        Email Config
-      </NuxtLink>
+      <UiButton variant="outline" toLink="/">Home</UiButton>
+      <UiButton toLink="/profile/email">Email Config</UiButton>
     </div>
   </div>
 </template>
