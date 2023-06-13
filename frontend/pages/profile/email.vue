@@ -28,8 +28,8 @@
       Actual middleware: verifiedEmail
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <UiButton variant="outline" toLink="/">Home</UiButton>
-      <UiButton toLink="/profile">Profile Page</UiButton>
+      <UiButton variant="outline" to-link="/">Home</UiButton>
+      <UiButton to-link="/profile">Profile Page</UiButton>
     </div>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async logout() {
-      var response = await this.authStore.logout();
+      const response = await this.authStore.logout();
     },
   },
 };

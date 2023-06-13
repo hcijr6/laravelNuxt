@@ -6,8 +6,9 @@ module.exports = {
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
-    "./app.vue"
-  ], theme: {
+    "./app.vue",
+  ],
+  theme: {
     container: {
       center: true,
       padding: "2rem",
@@ -77,4 +78,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

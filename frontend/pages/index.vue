@@ -28,11 +28,11 @@
       Actual middleware: Guest
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <UiButton variant="outline" toLink="/profile"> Profile Page </UiButton>
+      <UiButton variant="outline" to-link="/profile"> Profile Page </UiButton>
       <UiButton v-if="authStore.isLoggedIn" @click="logout()">
         Logout
       </UiButton>
-      <UiButton v-else toLink="/login"> Login </UiButton>
+      <UiButton v-else to-link="/login"> Login </UiButton>
     </div>
   </div>
 </template>
@@ -49,7 +49,8 @@ export default {
       meta: [
         {
           name: "description",
-          content: "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+          content:
+            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
         },
       ],
     });
@@ -58,10 +59,10 @@ export default {
   },
   methods: {
     async logout() {
-      var response = await this.authStore.logout();
+      const response = await this.authStore.logout(this.$route.meta.middleware);
     },
     async test() {
-      var response = await $larafetch("/api/v1/user", {
+      const response = await $larafetch("/api/v1/user", {
         response: true,
         redirectIfNotAuthenticated: true,
       });

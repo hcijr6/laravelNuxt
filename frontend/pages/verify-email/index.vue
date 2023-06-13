@@ -6,13 +6,13 @@
       >
         <div class="flex-grow max-w-md">
           <div class="flex w-full mb-4">
-            <UiButton variant="outline" size="logoXl" toLink="/"
-              ><IconsTest class="w-8 h-8"></IconsTest
+            <UiButton variant="outline" size="logoXl" to-link="/"
+              ><SvgLogo class="w-8 h-8"></SvgLogo
             ></UiButton>
           </div>
           <div
-            class="flex flex-col w-full gap-2 mt-4"
             v-if="!authStore.user.email_verified_at"
+            class="flex flex-col w-full gap-2 mt-4"
           >
             <div class="text-2xl font-medium">
               <h1 slot="header" class="text-2xl font-medium text-primary">
@@ -28,8 +28,8 @@
             <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
                 <UiButton
-                  @click="sendEmail"
                   :disabled="sendingForm || lockedButton"
+                  @click="sendEmail"
                 >
                   <div v-if="!timer" :class="{ hidden: sendingForm }">
                     Send again
@@ -40,7 +40,7 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-col w-full gap-2 mt-4" v-else>
+          <div v-else class="flex flex-col w-full gap-2 mt-4">
             <div class="text-2xl font-medium">
               <h1 slot="header" class="text-2xl font-medium text-primary">
                 Congratulations!
@@ -52,7 +52,7 @@
             </p>
             <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
-                <UiButton toLink="/profile/email" ¡> Start </UiButton>
+                <UiButton to-link="/profile/email" ¡> Start </UiButton>
               </div>
             </div>
           </div>
@@ -92,13 +92,16 @@ export default {
       timer: false,
     };
   },
+  mounted() {
+    this.authStore.fetchCurrentUser();
+  },
   methods: {
     async sendEmail() {
       this.sendingForm = true;
-      var response = await this.authStore.sendEmailNotification();
+      const response = await this.authStore.sendEmailNotification();
       if (response && response.status == "verification-link-sent") {
         // console.log(new Date());
-        var nextVerification = new Date();
+        let nextVerification = new Date();
         nextVerification.setSeconds(nextVerification.getSeconds() + 100);
         nextVerification = nextVerification.getTime();
         this.authStore.nextVerification = nextVerification;
@@ -108,13 +111,15 @@ export default {
     },
     async setCounter() {
       if (this.authStore.nextVerification) {
-        var nextVerification = this.authStore.nextVerification;
+        const nextVerification = this.authStore.nextVerification;
         this.lockedButton = true;
         var x = setInterval(() => {
-          var start = new Date().getTime();
-          var distance = nextVerification - start;
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          const start = new Date().getTime();
+          const distance = nextVerification - start;
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
           this.timer = this.formatoTiempo(minutes, seconds);
           if (distance <= 0) {
             clearInterval(x);
@@ -125,13 +130,10 @@ export default {
       }
     },
     formatoTiempo(minutos, segundos) {
-      var minutosStr = minutos < 10 ? "0" + minutos : minutos;
-      var segundosStr = segundos < 10 ? "0" + segundos : segundos;
+      const minutosStr = minutos < 10 ? "0" + minutos : minutos;
+      const segundosStr = segundos < 10 ? "0" + segundos : segundos;
       return minutosStr + ":" + segundosStr;
     },
-  },
-  mounted() {
-    this.authStore.fetchCurrentUser();
   },
 };
 </script>

@@ -6,8 +6,8 @@
       >
         <div class="max-w-md flex-grow">
           <div class="w-full flex mb-4">
-            <UiButton size="logoXl" variant="invertSolid" toLink="/">
-              <IconsTest class="w-8 h-8"></IconsTest>
+            <UiButton size="logoXl" variant="invertSolid" to-link="/">
+              <SvgLogo class="w-8 h-8"></SvgLogo>
             </UiButton>
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
@@ -46,10 +46,10 @@
                     class="flex w-full rounded-md text-sm shadow-sm duration-200 mt-2"
                   >
                     <UiInput
+                      v-model="authStore.forgotPasswordEmail"
                       type="text"
                       name="mail"
                       autocomplete="off"
-                      v-model="authStore.forgotPasswordEmail"
                       required=""
                       spellcheck="false"
                       placeholder="Enter your email"
@@ -61,12 +61,9 @@
                   ></UiInputErrors>
                 </div>
 
-                <UiButton
-                  @click="forgotPassword"
-                  :disabled="sendingForm"
-                >
-                    <div :class="{ hidden: sendingForm }">Send link</div>
-                    <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
+                <UiButton :disabled="sendingForm" @click="forgotPassword">
+                  <div :class="{ hidden: sendingForm }">Send link</div>
+                  <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                 </UiButton>
                 <div class="flex flex-col">
                   <div class="text-sm text-primary">
@@ -133,7 +130,7 @@ export default {
       const credentials = {
         email: this.authStore.forgotPasswordEmail,
       };
-      var response = await this.authStore.forgotPassword(credentials);
+      const response = await this.authStore.forgotPassword(credentials);
       console.log(response);
       this.resetErrors();
       if (response.data) {

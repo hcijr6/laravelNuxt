@@ -6,8 +6,8 @@
       >
         <div class="flex-grow max-w-md">
           <div class="flex w-full mb-4">
-            <UiButton size="logoXl" variant="invertSolid" toLink="/">
-              <IconsTest class="w-8 h-8"></IconsTest>
+            <UiButton size="logoXl" variant="invertSolid" to-link="/">
+              <SvgLogo class="w-8 h-8"></SvgLogo>
             </UiButton>
           </div>
           <div class="flex flex-col w-full gap-2 mt-4">
@@ -35,14 +35,14 @@
                     class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
                     <UiInput
+                      v-model.lazy="form.email"
                       type="text"
                       name="mail"
                       autocomplete="off"
-                      v-model.lazy="form.email"
-                      @change="handleInput('email', form.email)"
                       required=""
                       spellcheck="false"
                       placeholder="Enter your email"
+                      @change="handleInput('email', form.email)"
                     />
                   </div>
                   <UiInputErrors
@@ -63,14 +63,14 @@
                     class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
                     <UiInput
+                      v-model.lazy="form.password"
                       type="password"
                       name="password"
                       autocomplete="off"
-                      v-model.lazy="form.password"
-                      @change="handleInput('password', form.password)"
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
+                      @change="handleInput('password', form.password)"
                     />
                   </div>
                   <UiInputErrors
@@ -86,7 +86,7 @@
                   </div>
                 </div>
 
-                <UiButton @click="thisLogin" :disabled="sendingForm">
+                <UiButton :disabled="sendingForm" @click="thisLogin">
                   <div :class="{ hidden: sendingForm }">Sign In</div>
                   <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                 </UiButton>
@@ -100,7 +100,7 @@
                     </NuxtLink>
                   </div>
                 </div>
-                <GlobalThemeSwitch></GlobalThemeSwitch>
+                <ThemeSwitchMode></ThemeSwitchMode>
               </div>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default {
         email: this.form.email,
         password: this.form.password,
       };
-      var response = await this.authStore.login(credentials);
+      const response = await this.authStore.login(credentials);
       resetErrors(this);
       if (response.data) {
         this.authStore.user = response.data;

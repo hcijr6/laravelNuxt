@@ -34,8 +34,8 @@
       Actual middleware: Auth
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <UiButton variant="outline" toLink="/">Home</UiButton>
-      <UiButton toLink="/profile/email">Email Config</UiButton>
+      <UiButton variant="outline" to-link="/">Home</UiButton>
+      <UiButton to-link="/profile/email">Email Config</UiButton>
     </div>
   </div>
 </template>

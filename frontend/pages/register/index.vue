@@ -6,8 +6,8 @@
       >
         <div class="flex-grow max-w-md">
           <div class="flex w-full mb-4">
-            <UiButton size="logoXl" variant="invertSolid" toLink="/">
-              <IconsTest class="w-8 h-8"></IconsTest>
+            <UiButton size="logoXl" variant="invertSolid" to-link="/">
+              <SvgLogo class="w-8 h-8"></SvgLogo>
             </UiButton>
           </div>
           <div class="flex flex-col w-full gap-2 mt-4">
@@ -35,14 +35,14 @@
                     class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
                     <UiInput
+                      v-model="form.name"
                       type="text"
                       name="name"
                       autocomplete="off"
-                      v-model="form.name"
                       required=""
-                      @change="handleInput('name', form.name)"
                       spellcheck="false"
                       placeholder="Enter your name"
+                      @change="handleInput('name', form.name)"
                     />
                   </div>
                   <UiInputErrors
@@ -63,14 +63,14 @@
                     class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
                     <UiInput
+                      v-model="form.email"
                       type="text"
                       name="mail"
                       autocomplete="off"
-                      v-model="form.email"
                       required=""
-                      @change="handleInput('email', form.email)"
                       spellcheck="false"
                       placeholder="Enter your email"
+                      @change="handleInput('email', form.email)"
                     />
                   </div>
                   <UiInputErrors
@@ -91,14 +91,14 @@
                     class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
                     <UiInput
+                      v-model="form.password"
                       type="password"
                       name="password"
                       autocomplete="off"
-                      v-model="form.password"
-                      @change="handleInput('password', form.password)"
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
+                      @change="handleInput('password', form.password)"
                     />
                   </div>
                   <UiInputErrors
@@ -119,17 +119,17 @@
                     class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
                     <UiInput
+                      v-model="form.password_confirmation"
                       type="password"
                       name="password"
                       autocomplete="off"
-                      v-model="form.password_confirmation"
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
                     />
                   </div>
                 </div>
-                <UiButton @click="register()" :disabled="sendingForm">
+                <UiButton :disabled="sendingForm" @click="register()">
                   <div class="relative flex items-center justify-center">
                     <div :class="{ hidden: sendingForm }">Sign Up</div>
                     <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
@@ -197,7 +197,7 @@ export default {
         password: this.form.password,
         password_confirmation: this.form.password_confirmation,
       };
-      var response = await this.authStore.register(credentials);
+      const response = await this.authStore.register(credentials);
       this.resetErrors();
       if (response.data) {
         this.authStore.user = response.data;

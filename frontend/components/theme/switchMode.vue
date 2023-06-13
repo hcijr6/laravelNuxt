@@ -1,5 +1,5 @@
 <template>
-  <UiButton @click="toggleTheme()" variant="outline" size="logo">
+  <UiButton variant="outline" size="logo" @click="toggleTheme()">
     <SunIcon
       v-if="userTheme == 'dark-theme'"
       class="h-5 w-5 text-center"
@@ -11,19 +11,18 @@
 <script>
 import { SunIcon, MoonIcon } from "@heroicons/vue/24/solid";
 export default {
-  mounted() {
-    const initUserTheme = this.getTheme() || this.getMediaPreference();
-    this.setTheme(initUserTheme);
+  components: {
+    SunIcon,
+    MoonIcon,
   },
-
   data() {
     return {
       userTheme: "light-theme",
     };
   },
-  components: {
-    SunIcon,
-    MoonIcon,
+  mounted() {
+    const initUserTheme = this.getTheme() || this.getMediaPreference();
+    this.setTheme(initUserTheme);
   },
   methods: {
     toggleTheme() {
@@ -37,13 +36,11 @@ export default {
     getTheme() {
       return localStorage.getItem("user-theme");
     },
-
     setTheme(theme) {
       localStorage.setItem("user-theme", theme);
       this.userTheme = theme;
       document.documentElement.className = theme;
     },
-
     getMediaPreference() {
       const hasDarkPreference = window.matchMedia(
         "(prefers-color-scheme: dark)"
@@ -55,7 +52,6 @@ export default {
       }
     },
   },
-  
 };
 </script>
 

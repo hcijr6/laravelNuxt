@@ -1,14 +1,63 @@
-<p align="center"><a href="https://nuxt.com" target="_blank"><img src="https://nuxt.com/assets/design-kit/logo/full-logo-green-light.svg" alt="full-logo-green-light"></a></p>
-<p align="center"><a href="https://pinia.vuejs.org" target="_blank"><img src="https://pinia.vuejs.org/logo.svg" alt="full-logo-green-light" height="100px"></a></p>
+# Nuxt 3 Minimal Starter
 
-# Nuxt 3
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-- Nuxt 3 starter with some Laravel Sanctum Focused utilities
-- Full Auth setted Layouts. (Login,Register,Email Verification,Password Reset)
-- Pinia Auth Store. (Login,Register,Email Verification,Password Reset)
-- TailwindCSS
-- Heroicons
-- 3 Middlewares - Auth,NoAuth,Guest
-- Home (Public page), Profile (Required Auth page), AuthPages (Required NoAuth)
-- Checking authenticated session in every page transition and every Laravel petition.
-- Easy to use authStore, User Object.
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm run dev
+
+# yarn
+yarn dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

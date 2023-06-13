@@ -32,22 +32,20 @@ export default {
         {
           variants: {
             variant: {
-              default: 
-                "bg-primary text-primary-foreground hover:bg-primary/90",
-              solid: 
+              default: "bg-primary text-primary-foreground hover:bg-primary/90",
+              solid:
                 "bg-solid text-solid-foreground fill-solid-foreground hover:border hover:border-solid-foreground",
-              invertSolid: 
+              invertSolid:
                 "bg-solid-foreground text-solid fill-solid border border-input hover:border-solid",
               destructive:
                 "bg-destructive text-destructive-foreground hover:bg-destructive/90",
               outline:
-              "bg-solid-foreground text-solid fill-solid border border-input hover:border-solid",
+                "bg-solid-foreground text-solid fill-solid border border-input hover:border-solid",
               secondary:
                 "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-              ghost: 
+              ghost:
                 "hover:bg-accent hover:text-accent-foreground text-accent-foreground",
-              link: 
-                "hover:underline text-primary",
+              link: "hover:underline text-primary",
             },
             size: {
               default: "py-2 px-4",

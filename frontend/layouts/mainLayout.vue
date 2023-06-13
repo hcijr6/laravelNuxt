@@ -5,8 +5,8 @@
     <header class="py-2 border-b border-input container">
       <nav class="relative z-50 flex justify-between">
         <div class="flex items-center md:gap-x-12">
-          <UiButton size="logo" variant="invertSolid" toLink="/">
-            <IconsTest class="w-7 h-7"></IconsTest>
+          <UiButton size="logo" variant="invertSolid" to-link="/">
+            <SvgLogo class="w-7 h-7"></SvgLogo>
           </UiButton>
         </div>
         <div class="flex items-center gap-x-5 md:gap-x-8">
@@ -15,7 +15,7 @@
               v-if="authStore.isLoggedIn"
               size="logo"
               variant="invertSolid"
-              toLink="/profile"
+              to-link="/profile"
             >
               <span class="h-5 w-5 text-center">{{
                 authStore.user?.name.charAt(0)
@@ -25,8 +25,8 @@
             <UiButton v-if="authStore.isLoggedIn" @click="logout()"
               >Logout</UiButton
             >
-            <UiButton v-else toLink="/login"> Login </UiButton>
-            <GlobalThemeSwitch></GlobalThemeSwitch>
+            <UiButton v-else to-link="/login"> Login </UiButton>
+            <ThemeSwitchMode></ThemeSwitchMode>
           </div>
         </div>
       </nav>
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     async logout() {
-      var response = await this.authStore.logout();
+      const response = await this.authStore.logout(this.$route.meta.middleware);
     },
   },
 };

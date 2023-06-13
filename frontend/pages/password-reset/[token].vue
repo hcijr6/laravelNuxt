@@ -6,8 +6,8 @@
       >
         <div class="max-w-md flex-grow">
           <div class="w-full flex mb-4">
-            <UiButton size="logoXl" variant="invertSolid" toLink="/">
-              <IconsTest class="w-8 h-8"></IconsTest>
+            <UiButton size="logoXl" variant="invertSolid" to-link="/">
+              <SvgLogo class="w-8 h-8"></SvgLogo>
             </UiButton>
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
@@ -20,9 +20,7 @@
             <p class="text-primary">
               Please go to login and type your brand new password.
             </p>
-            <UiButton
-              toLink="/login"
-            >
+            <UiButton to-link="/login">
               <div class="relative flex items-center justify-center">
                 <div :class="{ hidden: sendingForm }">Sign In</div>
               </div>
@@ -34,8 +32,8 @@
                 Ups... Your password reset link is broken
               </h1>
               <span
-                v-if="validations.email"
                 v-for="message in validations.email"
+                v-if="validations.email"
                 class="text-red-500 text-xl w-full"
                 >{{ message }}</span
               >
@@ -44,10 +42,8 @@
               Please re-check your email for the correct link or restart the
               process.
             </p>
-            <UiButton
-              toLink="/forgot-password"
-            >
-                <div :class="{ hidden: sendingForm }">Restart process</div>
+            <UiButton to-link="/forgot-password">
+              <div :class="{ hidden: sendingForm }">Restart process</div>
             </UiButton>
           </div>
           <div v-else class="flex w-full flex-col gap-2">
@@ -74,18 +70,18 @@
                     class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
                   >
                     <UiButton
+                      v-model="form.password"
                       type="password"
                       name="password"
                       autocomplete="off"
-                      v-model="form.password"
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
                     />
                   </div>
                   <span
-                    v-if="validations.password"
                     v-for="message in validations.password"
+                    v-if="validations.password"
                     class="text-red-500 text-xs w-full"
                     >{{ message }}</span
                   >
@@ -103,17 +99,17 @@
                     class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
                   >
                     <UiButton
+                      v-model="form.password_confirmation"
                       type="password"
                       name="password"
                       autocomplete="off"
-                      v-model="form.password_confirmation"
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
                     />
                   </div>
                 </div>
-                <UiButton @click="resetPassword()" :disabled="sendingForm">
+                <UiButton :disabled="sendingForm" @click="resetPassword()">
                   <div :class="{ hidden: sendingForm }">Send</div>
                   <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                 </UiButton>
@@ -173,7 +169,7 @@ export default {
         password: this.form.password,
         password_confirmation: this.form.password,
       };
-      var response = await this.authStore.resetPassword(credentials);
+      const response = await this.authStore.resetPassword(credentials);
       console.log(response);
       this.resetErrors();
       if (response.data && response.data.status) {
