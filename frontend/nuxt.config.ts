@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ["@pinia/nuxt"],
+  modules: ["@vueuse/nuxt", "@pinia/nuxt"],
   css: ["@/assets/css/main.css"],
   postcss: {
     plugins: {
@@ -16,5 +16,5 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: ["./utils"],
-  }
+  },
 });

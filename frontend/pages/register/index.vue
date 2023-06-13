@@ -1,23 +1,23 @@
 <template>
   <div class="grid min-h-screen md:grid-cols-2">
-    <div class="w-full h-full">
+    <div class="w-full h-full bg-primary-foreground">
       <div
         class="flex items-center justify-center h-full px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
       >
         <div class="flex-grow max-w-md">
           <div class="flex w-full mb-4">
-            <NuxtLink
-              class="p-3 transition-all ease-in-out bg-white border rounded-lg hover:border-primary"
-              to="/"
-              ><IconsTest class="w-8 h-8 fill-primary"></IconsTest
-            ></NuxtLink>
+            <UiButton size="logoXl" variant="invertSolid" toLink="/">
+              <IconsTest class="w-8 h-8"></IconsTest>
+            </UiButton>
           </div>
           <div class="flex flex-col w-full gap-2 mt-4">
             <div class="text-2xl font-medium">
-              <h1 slot="header" class="text-2xl font-medium">Welcome to Hex</h1>
+              <h1 slot="header" class="text-2xl text-primary font-medium">
+                Welcome to HCI
+              </h1>
             </div>
             <p slot="description" class="text-primary">
-              Hex helps you start building, managing and sharing your Nuxt App
+              HCI helps you start building, managing and sharing your Nuxt App
               in minutes, not days.
             </p>
             <div class="flex flex-col gap-4 mt-4">
@@ -34,7 +34,7 @@
                   <div
                     class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
-                    <input
+                    <UiInput
                       type="text"
                       name="name"
                       autocomplete="off"
@@ -43,7 +43,6 @@
                       @change="handleInput('name', form.name)"
                       spellcheck="false"
                       placeholder="Enter your name"
-                      class="block flex-grow rounded-r-md border disabled:opacity-60 py-2.5 px-2 text-sm focus:ring-primary focus:border-primary rounded-md"
                     />
                   </div>
                   <UiInputErrors
@@ -63,7 +62,7 @@
                   <div
                     class="flex w-full mt-2 text-sm duration-200 rounded-md shadow-sm"
                   >
-                    <input
+                    <UiInput
                       type="text"
                       name="mail"
                       autocomplete="off"
@@ -72,7 +71,6 @@
                       @change="handleInput('email', form.email)"
                       spellcheck="false"
                       placeholder="Enter your email"
-                      class="block flex-grow rounded-r-md border disabled:opacity-60 py-2.5 px-2 text-sm focus:ring-primary focus:border-primary rounded-md"
                     />
                   </div>
                   <UiInputErrors
@@ -92,7 +90,7 @@
                   <div
                     class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
-                    <input
+                    <UiInput
                       type="password"
                       name="password"
                       autocomplete="off"
@@ -101,7 +99,6 @@
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
-                      class="block flex-grow rounded-r-md border disabled:opacity-60 py-2.5 px-2 text-sm rounded-lg"
                     />
                   </div>
                   <UiInputErrors
@@ -121,7 +118,7 @@
                   <div
                     class="flex w-full mt-2 text-sm duration-200 rounded-lg shadow-sm"
                   >
-                    <input
+                    <UiInput
                       type="password"
                       name="password"
                       autocomplete="off"
@@ -129,20 +126,15 @@
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
-                      class="block flex-grow disabled:opacity-60 py-2.5 px-2 text-sm border rounded-lg"
                     />
                   </div>
                 </div>
-                <button
-                  @click="register()"
-                  class="mt-2 focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
-                  :disabled="sendingForm"
-                >
+                <UiButton @click="register()" :disabled="sendingForm">
                   <div class="relative flex items-center justify-center">
                     <div :class="{ hidden: sendingForm }">Sign Up</div>
                     <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                   </div>
-                </button>
+                </UiButton>
                 <div class="text-sm text-primary">
                   Already have an account?
                   <NuxtLink
@@ -157,7 +149,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-primary"></div>
+    <div class="bg-slate-900"></div>
   </div>
 </template>
 
@@ -168,6 +160,16 @@ export default {
   setup() {
     definePageMeta({
       middleware: ["no-auth"],
+    });
+    useHead({
+      title: "Register",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+        },
+      ],
     });
     const authStore = useAuthStore();
     return { authStore };

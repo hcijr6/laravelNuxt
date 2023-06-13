@@ -28,16 +28,20 @@ export default {
   computed: {
     buttonClasses() {
       return cva(
-        "inline-flex items-center justify-center rounded-lg text-sm font-semibold transition-all ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
+        "inline-flex drop-shadow items-center justify-center rounded-lg text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:opacity-80 disabled:pointer-events-none ring-offset-background",
         {
           variants: {
             variant: {
               default: 
                 "bg-primary text-primary-foreground hover:bg-primary/90",
+              solid: 
+                "bg-solid text-solid-foreground fill-solid-foreground hover:border hover:border-solid-foreground",
+              invertSolid: 
+                "bg-solid-foreground text-solid fill-solid border border-input hover:border-solid",
               destructive:
                 "bg-destructive text-destructive-foreground hover:bg-destructive/90",
               outline:
-                "border border-input hover:border-primary text-primary",
+              "bg-solid-foreground text-solid fill-solid border border-input hover:border-solid",
               secondary:
                 "bg-secondary text-secondary-foreground hover:bg-secondary/80",
               ghost: 
@@ -51,7 +55,8 @@ export default {
               md: "h-11 px-5",
               lg: "h-11 px-8",
               full: "w-full",
-              logo: "p-2"
+              logo: "p-2",
+              logoXl: "p-3",
             },
           },
         }

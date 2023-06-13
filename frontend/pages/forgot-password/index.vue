@@ -1,20 +1,18 @@
 <template>
   <div class="grid min-h-screen md:grid-cols-2">
-    <div class="h-full w-full">
+    <div class="h-full w-full bg-primary-foreground">
       <div
         class="flex h-full items-center justify-center px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
       >
         <div class="max-w-md flex-grow">
           <div class="w-full flex mb-4">
-            <NuxtLink
-              class="bg-white border p-3 rounded-lg transition-all ease-in-out hover:border-primary"
-              to="/"
-              ><IconsTest class="h-8 w-8 fill-primary"></IconsTest
-            ></NuxtLink>
+            <UiButton size="logoXl" variant="invertSolid" toLink="/">
+              <IconsTest class="w-8 h-8"></IconsTest>
+            </UiButton>
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <h1 class="text-2xl font-medium">Success</h1>
+              <h1 class="text-2xl font-medium text-primary">Success</h1>
               <span v-if="success" class="text-green-500 text-xl w-full">{{
                 success
               }}</span>
@@ -26,7 +24,7 @@
           <div v-else class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
               <!-- <HelloWorld></HelloWorld> -->
-              <h1 slot="header" class="text-2xl font-medium">
+              <h1 slot="header" class="text-2xl font-medium text-primary">
                 You forget your password?
               </h1>
             </div>
@@ -47,7 +45,7 @@
                   <div
                     class="flex w-full rounded-md text-sm shadow-sm duration-200 mt-2"
                   >
-                    <input
+                    <UiInput
                       type="text"
                       name="mail"
                       autocomplete="off"
@@ -55,27 +53,21 @@
                       required=""
                       spellcheck="false"
                       placeholder="Enter your email"
-                      class="block flex-grow rounded-r-md border disabled:opacity-60 py-2.5 px-2 text-sm focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                     />
                   </div>
-                  <span
+                  <UiInputErrors
                     v-if="validations.email"
-                    v-for="message in validations.email"
-                    class="text-red-500 text-xs w-full"
-                    >{{ message }}</span
-                  >
+                    :errors="validations.email"
+                  ></UiInputErrors>
                 </div>
 
-                <button
+                <UiButton
                   @click="forgotPassword"
                   :disabled="sendingForm"
-                  class="bg-primary focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
                 >
-                  <div class="relative flex items-center justify-center">
                     <div :class="{ hidden: sendingForm }">Send link</div>
                     <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
-                  </div>
-                </button>
+                </UiButton>
                 <div class="flex flex-col">
                   <div class="text-sm text-primary">
                     You don't have an account?
@@ -100,7 +92,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-primary"></div>
+    <div class="bg-slate-900"></div>
   </div>
 </template>
 
@@ -112,6 +104,16 @@ export default {
     definePageMeta({
       middleware: ["no-auth"],
     });
+    useHead({
+      title: "Forgot Password",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+        },
+      ],
+    });
     const authStore = useAuthStore();
     return { authStore };
   },
@@ -119,7 +121,6 @@ export default {
     return {
       form: {
         email: "hcijr6@gmail.com",
-        password: "hcijr6@gmail.com",
       },
       validations: [],
       sendingForm: false,
@@ -139,8 +140,6 @@ export default {
         if (response.data.status) {
           this.success = response.data.status;
         }
-        // this.authStore.user = response.data;
-        // navigateTo("/");
       } else {
         this.validations = response.errors;
       }

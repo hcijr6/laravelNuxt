@@ -50,7 +50,6 @@ export const useAuthStore = defineStore("auth_store", {
           response: true,
         });
         console.log(response)
-
         this.user = response;
         return true;
       } catch (error) {
@@ -73,7 +72,6 @@ export const useAuthStore = defineStore("auth_store", {
       try {
         var response: any = await $larafetch("/logout", { method: "post" });
         this.user = null;
-        location.reload();
       } catch (error) {
         return false;
       }

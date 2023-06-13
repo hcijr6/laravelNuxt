@@ -41,6 +41,16 @@ export default {
       layout: "main-layout",
       middleware: ["verified-email"],
     });
+    useHead({
+      title: "Verified Email",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+        },
+      ],
+    });
     const authStore = useAuthStore();
     return { authStore };
   },

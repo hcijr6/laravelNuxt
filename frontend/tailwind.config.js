@@ -7,7 +7,7 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue"
-  ],  theme: {
+  ], theme: {
     container: {
       center: true,
       padding: "2rem",
@@ -19,12 +19,16 @@ module.exports = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+        ring: "hsl(var(--solid))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+        },
+        solid: {
+          DEFAULT: "hsl(var(--solid))",
+          foreground: "hsl(var(--solid-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

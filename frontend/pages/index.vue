@@ -29,7 +29,9 @@
     </p>
     <div class="flex justify-center gap-3 mt-10">
       <UiButton variant="outline" toLink="/profile"> Profile Page </UiButton>
-      <UiButton v-if="authStore.isLoggedIn" @click="logout()"> Logout </UiButton>
+      <UiButton v-if="authStore.isLoggedIn" @click="logout()">
+        Logout
+      </UiButton>
       <UiButton v-else toLink="/login"> Login </UiButton>
     </div>
   </div>
@@ -41,6 +43,15 @@ export default {
     definePageMeta({
       layout: "main-layout",
       middleware: ["guest"],
+    });
+    useHead({
+      title: "Home Page",
+      meta: [
+        {
+          name: "description",
+          content: "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+        },
+      ],
     });
     const authStore = useAuthStore();
     return { authStore };

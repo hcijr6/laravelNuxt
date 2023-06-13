@@ -1,15 +1,12 @@
 <template>
   <div
-    class="flex flex-col items-center justify-start min-h-screen min-w-screen bg-background"
-    :class="{
-      dark: darkTheme,
-    }"
+    class="flex flex-col items-center justify-start min-h-screen min-w-screen bg-primary-foreground"
   >
     <header class="py-2 border-b border-input container">
       <nav class="relative z-50 flex justify-between">
         <div class="flex items-center md:gap-x-12">
-          <UiButton size="logo" variant="outline" toLink="/">
-            <IconsTest class="w-7 h-7 fill-primary"></IconsTest>
+          <UiButton size="logo" variant="invertSolid" toLink="/">
+            <IconsTest class="w-7 h-7"></IconsTest>
           </UiButton>
         </div>
         <div class="flex items-center gap-x-5 md:gap-x-8">
@@ -17,7 +14,7 @@
             <UiButton
               v-if="authStore.isLoggedIn"
               size="logo"
-              variant="outline"
+              variant="invertSolid"
               toLink="/profile"
             >
               <span class="h-5 w-5 text-center">{{
@@ -29,14 +26,7 @@
               >Logout</UiButton
             >
             <UiButton v-else toLink="/login"> Login </UiButton>
-            <UiButton
-              @click="darkTheme = !darkTheme"
-              variant="outline"
-              size="logo"
-            >
-              <SunIcon v-if="darkTheme" class="h-5 w-5 text-center"></SunIcon>
-              <MoonIcon v-else class="h-5 w-5 text-center"></MoonIcon>
-            </UiButton>
+            <GlobalThemeSwitch></GlobalThemeSwitch>
           </div>
         </div>
       </nav>
@@ -46,7 +36,6 @@
 </template>
 <script>
 import { useAuthStore } from "~~/stores/auth";
-import { SunIcon, MoonIcon } from "@heroicons/vue/24/solid";
 export default {
   setup() {
     const authStore = useAuthStore();
@@ -56,10 +45,6 @@ export default {
     return {
       darkTheme: true,
     };
-  },
-  components: {
-    SunIcon,
-    MoonIcon
   },
   methods: {
     async logout() {

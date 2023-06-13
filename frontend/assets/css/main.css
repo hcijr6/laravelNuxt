@@ -32,11 +32,12 @@
         --destructive-foreground: 210 40% 98%;
 
         --ring: 215 20.2% 65.1%;
-
         --radius: 0.5rem;
-    }
 
-    .dark {
+        --solid: 222 47% 11%;
+        --solid-foreground: 0 0% 100%;
+    }
+    .dark-theme {
         --background: 224 71% 4%;
         --foreground: 213 31% 91%;
 
@@ -50,7 +51,7 @@
         --card-foreground: 213 31% 91%;
 
         --border: 216 34% 17%;
-        --input: 216 34% 17%;
+        --input: 0 0% 41.18%;
 
         --primary: 210 40% 98%;
         --primary-foreground: 222.2 47.4% 1.2%;
@@ -65,8 +66,10 @@
         --destructive-foreground: 210 40% 98%;
 
         --ring: 216 34% 17%;
-
         --radius: 0.5rem;
+
+        --solid: 0 0% 100%;
+        --solid-foreground: 222 47% 11%;
     }
 }
 

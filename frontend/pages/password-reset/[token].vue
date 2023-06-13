@@ -1,20 +1,18 @@
 <template>
   <div class="grid min-h-screen md:grid-cols-2">
-    <div class="h-full w-full">
+    <div class="h-full w-full bg-primary-foreground">
       <div
         class="flex h-full items-center justify-center px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
       >
         <div class="max-w-md flex-grow">
           <div class="w-full flex mb-4">
-            <NuxtLink
-              class="bg-white border p-3 rounded-lg transition-all ease-in-out hover:border-primary"
-              to="/"
-              ><IconsTest class="h-8 w-8 fill-primary"></IconsTest
-            ></NuxtLink>
+            <UiButton size="logoXl" variant="invertSolid" toLink="/">
+              <IconsTest class="w-8 h-8"></IconsTest>
+            </UiButton>
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <h1 class="text-2xl font-medium">Congratulations</h1>
+              <h1 class="text-2xl font-medium text-primary">Congratulations</h1>
               <span v-if="success" class="text-green-500 text-xl w-full">{{
                 success
               }}</span>
@@ -22,18 +20,17 @@
             <p class="text-primary">
               Please go to login and type your brand new password.
             </p>
-            <NuxtLink
-              to="/login"
-              class="focus:bg-primary mt-2 hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
+            <UiButton
+              toLink="/login"
             >
               <div class="relative flex items-center justify-center">
                 <div :class="{ hidden: sendingForm }">Sign In</div>
               </div>
-            </NuxtLink>
+            </UiButton>
           </div>
           <div v-else-if="!recoveryEmail" class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <h1 class="text-2xl font-medium">
+              <h1 class="text-2xl font-medium text-primary">
                 Ups... Your password reset link is broken
               </h1>
               <span
@@ -47,18 +44,15 @@
               Please re-check your email for the correct link or restart the
               process.
             </p>
-            <NuxtLink
-              to="/forgot-password"
-              class="focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
+            <UiButton
+              toLink="/forgot-password"
             >
-              <div class="relative flex items-center justify-center">
                 <div :class="{ hidden: sendingForm }">Restart process</div>
-              </div>
-            </NuxtLink>
+            </UiButton>
           </div>
           <div v-else class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <h1 class="text-2xl font-medium">
+              <h1 class="text-2xl text-primary font-medium">
                 Set your new Password for {{ form.email }}
               </h1>
             </div>
@@ -79,7 +73,7 @@
                   <div
                     class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
                   >
-                    <input
+                    <UiButton
                       type="password"
                       name="password"
                       autocomplete="off"
@@ -87,7 +81,6 @@
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
-                      class="block flex-grow rounded-r-md border disabled:opacity-60 py-2.5 px-2 text-sm rounded-lg"
                     />
                   </div>
                   <span
@@ -109,7 +102,7 @@
                   <div
                     class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
                   >
-                    <input
+                    <UiButton
                       type="password"
                       name="password"
                       autocomplete="off"
@@ -117,27 +110,20 @@
                       required=""
                       spellcheck="false"
                       placeholder="••••••••••"
-                      class="block flex-grow disabled:opacity-60 py-2.5 px-2 text-sm border rounded-lg"
                     />
                   </div>
                 </div>
-                <button
-                  @click="resetPassword()"
-                  class="mt-2 focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
-                  :disabled="sendingForm"
-                >
-                  <div class="relative flex items-center justify-center">
-                    <div :class="{ hidden: sendingForm }">Send</div>
-                    <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
-                  </div>
-                </button>
+                <UiButton @click="resetPassword()" :disabled="sendingForm">
+                  <div :class="{ hidden: sendingForm }">Send</div>
+                  <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
+                </UiButton>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="bg-primary"></div>
+    <div class="bg-slate-900"></div>
   </div>
 </template>
 
@@ -148,6 +134,16 @@ export default {
   setup() {
     definePageMeta({
       middleware: ["no-auth"],
+    });
+    useHead({
+      title: "Password Reset",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+        },
+      ],
     });
     const route = useRoute();
     const token = route.params.token;

@@ -1,23 +1,21 @@
 <template>
-  <div class="grid min-h-screen md:grid-cols-2">
-    <div class="w-full h-full">
+  <div class="grid min-h-screen md:grid-cols-2 dark-theme">
+    <div class="w-full h-full bg-primary-foreground">
       <div
         class="flex items-center justify-center h-full px-8 pt-12 pb-20 duration-200 md:px-12 lg:px-16"
       >
         <div class="flex-grow max-w-md">
           <div class="flex w-full mb-4">
-            <NuxtLink
-              class="p-3 transition-all ease-in-out bg-white border rounded-lg hover:border-primary"
-              to="/"
-              ><IconsTest class="w-8 h-8 fill-primary"></IconsTest
-            ></NuxtLink>
+            <UiButton variant="outline" size="logoXl" toLink="/"
+              ><IconsTest class="w-8 h-8"></IconsTest
+            ></UiButton>
           </div>
           <div
             class="flex flex-col w-full gap-2 mt-4"
             v-if="!authStore.user.email_verified_at"
           >
             <div class="text-2xl font-medium">
-              <h1 slot="header" class="text-2xl font-medium">
+              <h1 slot="header" class="text-2xl font-medium text-primary">
                 Verify your email: {{ authStore.user.email }}
               </h1>
             </div>
@@ -29,25 +27,22 @@
             </p>
             <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
-                <button
+                <UiButton
                   @click="sendEmail"
                   :disabled="sendingForm || lockedButton"
-                  class="mt-2 bg-primary focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
                 >
-                  <div class="relative flex items-center justify-center">
-                    <div v-if="!timer" :class="{ hidden: sendingForm }">
-                      Send again
-                    </div>
-                    <div v-else>Sended, wait for resending {{ timer }}</div>
-                    <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
+                  <div v-if="!timer" :class="{ hidden: sendingForm }">
+                    Send again
                   </div>
-                </button>
+                  <div v-else>Sended, wait for resending {{ timer }}</div>
+                  <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
+                </UiButton>
               </div>
             </div>
           </div>
           <div class="flex flex-col w-full gap-2 mt-4" v-else>
             <div class="text-2xl font-medium">
-              <h1 slot="header" class="text-2xl font-medium">
+              <h1 slot="header" class="text-2xl font-medium text-primary">
                 Congratulations!
               </h1>
             </div>
@@ -57,14 +52,7 @@
             </p>
             <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
-                <NuxtLink
-                  to="/profile/email"
-                  class="mt-2 bg-primary focus:bg-primary hover:bg-primary bg-primary block appearance-none rounded-lg text-sm font-medium text-white duration-100 focus:outline-none disabled:pointer-events-none px-4 py-2.5"
-                >
-                  <div class="relative flex items-center justify-center">
-                    <div>Start</div>
-                  </div>
-                </NuxtLink>
+                <UiButton toLink="/profile/email" ¡> Start </UiButton>
               </div>
             </div>
           </div>
@@ -81,6 +69,16 @@ export default {
   setup() {
     definePageMeta({
       middleware: ["auth"],
+    });
+    useHead({
+      title: "Verify Email",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+        },
+      ],
     });
     const authStore = useAuthStore();
     return { authStore };
