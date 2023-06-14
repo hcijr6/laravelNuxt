@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\OrderCreated;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +19,7 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
+Route::get('/mailTest', function () {
+    Mail::to('hcijr6@gmail.com')->send(new OrderCreated());
+});
 require __DIR__.'/auth.php';
