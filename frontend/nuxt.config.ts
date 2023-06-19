@@ -1,7 +1,6 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // devtools: { enabled: true },
-  modules: ["@vueuse/nuxt", "@pinia/nuxt"],
+  devtools: { enabled: true },
+  modules: ["@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/i18n"],
   css: ["@/assets/css/main.css"],
   postcss: {
     plugins: {
@@ -19,4 +18,12 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["./utils"],
   },
+  i18n: {
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected'
+    },
+    vueI18n: "./i18n.config.ts",
+  },
+  plugins: [{ src: "./plugins/i18n-plugin.js", mode: "client" }],
 });

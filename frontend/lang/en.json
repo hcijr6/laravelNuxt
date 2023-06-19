@@ -1,0 +1,13 @@
+{
+  "index": {
+    "metaTitle": "Home Page",
+    "metaDescription": "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+    "title": ["Home Page", "that requires no auth."],
+    "description": [
+      "Streamline your web development with our cutting-edge template designed for",
+      "and",
+      ". Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers."
+    ],
+    "subDescription": "Actual middleware:"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "index": {
+    "metaTitle": "Página de inicio",
+    "metaDescription": "Optimiza tu desarrollo web con nuestra plantilla de vanguardia diseñada para Laravel 10 y Nuxt 3. Ahorra tiempo valioso y maximiza tu productividad con nuestra solución sofisticada y llave en mano diseñada por desarrolladores expertos. Middleware actual: Invitado",
+    "title": ["Página de inicio", "que no requiere autenticación."],
+    "description": [
+      "Optimiza tu desarrollo web con nuestra plantilla de vanguardia diseñada para",
+      "y",
+      ". Ahorra tiempo valioso y maximiza tu productividad con nuestra solución sofisticada y llave en mano diseñada por desarrolladores expertos."
+    ],
+    "subDescription": "Middleware actual:"
+  }
+}
