@@ -35,7 +35,7 @@ class PrevalidateController extends Controller
         }
 
         // Get the validation rules from the request class
-        $requestClass = new $requestClass; 
+        $requestClass = new $requestClass;
         $rules = $requestClass->rules();
 
         if ($validateAllFields) {
@@ -84,13 +84,16 @@ class PrevalidateController extends Controller
         return $requestClass;
     }
 
-    public function test(){
-        $classPath="App\\Http\\Requests\\Auth\\RegisterRequest";
-        $class= new $classPath;
-        $rules=$class->rules();
-        $confirmedKey = array_search("confirmed", $rules["password"]);
-        if ($confirmedKey !== false) {
-            unset($rules[$confirmedKey]);
+    public function test()
+    {
+        var_dump(['Laravel' => app()->currentLocale()]);
+        app()->setLocale('es');
+        var_dump(['Laravel' => app()->currentLocale()]);
+        $fieldValidator = Validator::make(['name' => 'H'], [
+            'name' => 'required|min:3',
+        ]);
+        if ($fieldValidator->fails()) {
+            var_dump($fieldValidator->errors());
         }
     }
 }

@@ -12,24 +12,29 @@
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <h1 class="text-2xl font-medium text-primary">Success</h1>
+              <h1 class="text-2xl font-medium text-primary">
+                {{ $t("forgotPassword.success") }}
+              </h1>
               <span v-if="success" class="text-green-500 text-xl w-full">{{
                 success
               }}</span>
             </div>
             <p class="text-primary">
-              Please go check your {{ authStore.forgotPasswordEmail }} mail.
+              {{
+                $t("forgotPassword.successMessage", {
+                  email: authStore.forgotPasswordEmail,
+                })
+              }}
             </p>
           </div>
           <div v-else class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <!-- <HelloWorld></HelloWorld> -->
               <h1 slot="header" class="text-2xl font-medium text-primary">
-                You forget your password?
+                {{ $t("forgotPassword.title") }}
               </h1>
             </div>
             <p slot="description" class="text-primary">
-              Let us help you with that.
+              {{ $t("forgotPassword.description") }}
             </p>
             <div class="mt-4 flex flex-col gap-4">
               <div class="flex flex-col gap-4">
@@ -38,7 +43,7 @@
                     for="email"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Email
+                      {{ $t("global.forms.email.label") }}
                       <div></div>
                     </div>
                   </label>
@@ -52,7 +57,7 @@
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="Enter your email"
+                      :placeholder="$t('global.forms.email.placeholder')"
                     />
                   </div>
                   <UiInputErrors
@@ -62,25 +67,26 @@
                 </div>
 
                 <UiButton :disabled="sendingForm" @click="forgotPassword">
-                  <div :class="{ hidden: sendingForm }">Send link</div>
+                  <div :class="{ hidden: sendingForm }">{{ $t("forgotPassword.sendLink") }}</div>
                   <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                 </UiButton>
                 <div class="flex flex-col">
                   <div class="text-sm text-primary">
-                    You don't have an account?
+                    {{ $t("global.auth.registerQuestion") }}
                     <NuxtLink
                       class="text-primary font-medium underline"
                       to="/register"
-                      >Sign up
+                      >{{ $t("global.auth.signUp") }}
                     </NuxtLink>
                   </div>
                   <div class="text-sm text-primary">
-                    Already have an account?
+                    {{ $t("global.auth.loginQuestion") }}
                     <NuxtLink
                       class="text-primary font-medium underline"
                       to="/login"
-                      >Sign In</NuxtLink
                     >
+                      {{ $t("global.auth.signIn") }}
+                    </NuxtLink>
                   </div>
                 </div>
               </div>
@@ -89,7 +95,8 @@
         </div>
       </div>
     </div>
-    <div class="bg-slate-900"></div>
+    <ThemeAuthPattern></ThemeAuthPattern>
+
   </div>
 </template>
 
@@ -103,13 +110,6 @@ export default {
     });
     useHead({
       title: "Forgot Password",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
-        },
-      ],
     });
     const authStore = useAuthStore();
     return { authStore };

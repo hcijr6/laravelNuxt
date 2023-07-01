@@ -1,8 +1,12 @@
 <template>
-  <button v-if="!toLink" :class="buttonClasses({ variant, size })">
+  <button v-if="!toLink" :class="buttonClasses({ variant, size, group })">
     <slot />
   </button>
-  <NuxtLink v-else :to="toLink" :class="buttonClasses({ variant, size })">
+  <NuxtLink
+    v-else
+    :to="localePath(toLink)"
+    :class="buttonClasses({ variant, size, group })"
+  >
     <slot />
   </NuxtLink>
 </template>
@@ -21,6 +25,10 @@ export default {
       default: "default",
     },
     toLink: {
+      type: String,
+      required: false,
+    },
+    group: {
       type: String,
       required: false,
     },
@@ -55,6 +63,10 @@ export default {
               full: "w-full",
               logo: "p-2",
               logoXl: "p-3",
+            },
+            group: {
+              default: "",
+              true: "group",
             },
           },
         }

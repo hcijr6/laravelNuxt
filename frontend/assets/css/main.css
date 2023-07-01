@@ -17,7 +17,7 @@
     --card-foreground: 222.2 47.4% 11.2%;
 
     --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --input: 0 0% 82%;
 
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
@@ -36,6 +36,8 @@
 
     --solid: 222 47% 11%;
     --solid-foreground: 0 0% 100%;
+
+    --pattern:url('/img/pattern.svg');
   }
   .dark-theme {
     --background: 224 71% 4%;
@@ -54,7 +56,7 @@
     --input: 0 0% 41.18%;
 
     --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
+    --primary-foreground: 0 0% 1%;
 
     --secondary: 222.2 47.4% 11.2%;
     --secondary-foreground: 210 40% 98%;
@@ -69,7 +71,9 @@
     --radius: 0.5rem;
 
     --solid: 0 0% 100%;
-    --solid-foreground: 222 47% 11%;
+    --solid-foreground: 0 0% 2%;
+    --pattern:url('/img/patternBlack.svg');
+
   }
 }
 

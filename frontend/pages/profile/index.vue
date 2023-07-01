@@ -5,37 +5,32 @@
     <h1
       class="max-w-4xl mx-auto text-5xl font-medium tracking-tight text-primary sm:text-7xl"
     >
-      Private
       <span class="relative"
-        ><span class="underline break-words"
-          >{{ authStore.user?.name }}
-        </span></span
+        ><span class="underline">{{ $t("profile.index.title.0") }}</span></span
       >
-      profile page that requires auth.
+      {{ $t("profile.index.title.1") }}
     </h1>
     <p class="max-w-2xl mx-auto mt-6 text-lg tracking-tight text-primary">
-      Streamline your web development with our cutting-edge template designed
-      for
+      {{ $t("profile.index.description.0") }}
       <a
         href="https://laravel.com/"
         class="font-semibold text-[#FF2D20] underline"
         >Laravel 10</a
       >
-      and
+      {{ $t("profile.index.description.1") }}
       <a href="https://nuxt.com/" class="font-semibold text-[#00DC82] underline"
         >Nuxt 3</a
       >
-      . Save precious time and maximize your productivity with our
-      sophisticated, turnkey solution designed by expert developers.
+      {{ $t("profile.index.description.2") }}
     </p>
     <p
       class="max-w-2xl mx-auto mt-6 text-lg font-semibold tracking-tight text-primary"
     >
-      Actual middleware: Auth
+    {{ $t("profile.index.subDescription") }} Auth
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <UiButton variant="outline" to-link="/">Home</UiButton>
-      <UiButton to-link="/profile/email">Email Config</UiButton>
+      <UiButton variant="outline" to-link="/">{{ $t('index.pageName') }}</UiButton>
+      <UiButton to-link="/profile/email">{{ $t('profile.email.pageName') }}</UiButton>
     </div>
   </div>
 </template>

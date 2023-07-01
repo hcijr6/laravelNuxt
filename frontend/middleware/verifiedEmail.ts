@@ -5,9 +5,9 @@ export default defineNuxtRouteMiddleware(async function (to, from) {
   if (!authStore.isLoggedIn) {
     const response = await authStore.fetchCurrentUser(true);
     if (response) {
-      return navigateTo("/login", { replace: true });
+      return navigateTo(testLocale("/login"));
     }
   } else if (!authStore.user.email_verified_at) {
-    return navigateTo("/verify-email", { replace: true });
+    return navigateTo(testLocale("/verify-email"));
   }
 });

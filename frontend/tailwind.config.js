@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'mainPattern': "var(--pattern)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

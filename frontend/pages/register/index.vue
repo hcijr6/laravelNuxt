@@ -13,12 +13,11 @@
           <div class="flex flex-col w-full gap-2 mt-4">
             <div class="text-2xl font-medium">
               <h1 slot="header" class="text-2xl text-primary font-medium">
-                Welcome to HCI
+                {{ $t("register.title") }}
               </h1>
             </div>
             <p slot="description" class="text-primary">
-              HCI helps you start building, managing and sharing your Nuxt App
-              in minutes, not days.
+              {{ $t("register.description") }}
             </p>
             <div class="flex flex-col gap-4 mt-4">
               <div class="flex flex-col gap-4">
@@ -27,7 +26,7 @@
                     for="name"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Name
+                      {{ $t("global.forms.name.label") }}
                       <div></div>
                     </div>
                   </label>
@@ -41,7 +40,7 @@
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="Enter your name"
+                      :placeholder="$t('global.forms.name.placeholder')"
                       @change="handleInput('name', form.name)"
                     />
                   </div>
@@ -55,7 +54,7 @@
                     for="email"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Email
+                      {{ $t("global.forms.email.label") }}
                       <div></div>
                     </div>
                   </label>
@@ -69,7 +68,7 @@
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="Enter your email"
+                      :placeholder="$t('global.forms.email.placeholder')"
                       @change="handleInput('email', form.email)"
                     />
                   </div>
@@ -83,7 +82,7 @@
                     for="password"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Password
+                      {{ $t("global.forms.password.label") }}
                       <div></div>
                     </div>
                   </label>
@@ -97,7 +96,7 @@
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="••••••••••"
+                      :placeholder="$t('global.forms.password.placeholder')"
                       @change="handleInput('password', form.password)"
                     />
                   </div>
@@ -111,7 +110,7 @@
                     for="password"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Confirm Password
+                      {{ $t("global.forms.passwordConfirmation.label") }}
                       <div></div>
                     </div>
                   </label>
@@ -125,22 +124,26 @@
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="••••••••••"
+                      :placeholder="
+                        $t('global.forms.passwordConfirmation.placeholder')
+                      "
                     />
                   </div>
                 </div>
                 <UiButton :disabled="sendingForm" @click="register()">
                   <div class="relative flex items-center justify-center">
-                    <div :class="{ hidden: sendingForm }">Sign Up</div>
+                    <div :class="{ hidden: sendingForm }">
+                      {{ $t("global.auth.signUp") }}
+                    </div>
                     <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                   </div>
                 </UiButton>
                 <div class="text-sm text-primary">
-                  Already have an account?
+                  {{ $t("global.auth.loginQuestion") }}
                   <NuxtLink
                     class="font-medium underline text-primary"
-                    to="/login"
-                    >Sign In</NuxtLink
+                    :to="localePath('/login')"
+                    >{{ $t("global.auth.signIn") }}</NuxtLink
                   >
                 </div>
               </div>
@@ -149,7 +152,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-slate-900"></div>
+    <ThemeAuthPattern></ThemeAuthPattern>
   </div>
 </template>
 
@@ -201,7 +204,7 @@ export default {
       this.resetErrors();
       if (response.data) {
         this.authStore.user = response.data;
-        navigateTo("/");
+        navigateTo(testLocale("/"));
       } else {
         this.validations = response.errors;
       }

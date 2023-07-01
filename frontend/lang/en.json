@@ -1,5 +1,36 @@
 {
+  "global": {
+    "login": "Login",
+    "logout": "Log out",
+    "send": "Send",
+    "auth": {
+      "registerQuestion": "You don't have an account?",
+      "loginQuestion": "Already have an account?",
+      "signUp": "Sign up",
+      "signIn": "Sign in",
+      "forgotPasswordQuestion": "Forgot Password?"
+    },
+    "forms": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "passwordConfirmation": {
+        "label": "Password confirmation",
+        "placeholder": "Repeat the password"
+      }
+    }
+  },
   "index": {
+    "pageName": "Home Page",
     "metaTitle": "Home Page",
     "metaDescription": "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
     "title": ["Home Page", "that requires no auth."],
@@ -9,5 +40,62 @@
       ". Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers."
     ],
     "subDescription": "Actual middleware:"
+  },
+  "profile": {
+    "index": {
+      "pageName": "Profile Page",
+      "metaTitle": "Profile Page",
+      "metaDescription": "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+      "title": ["Profile Page", "that requires auth."],
+      "description": [
+        "Streamline your web development with our cutting-edge template designed for",
+        "and",
+        ". Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers."
+      ],
+      "subDescription": "Actual middleware:"
+    },
+    "email": {
+      "pageName": "Email Config",
+      "metaTitle": "Email Config",
+      "metaDescription": "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
+      "title": ["Email Config", "that requires auth."],
+      "description": [
+        "Streamline your web development with our cutting-edge template designed for",
+        "and",
+        ". Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers."
+      ],
+      "subDescription": "Actual middleware:"
+    }
+  },
+  "forgotPassword": {
+    "success": "Success",
+    "successMessage": "Please go check your {email} mail.",
+    "title": "You forget your password?",
+    "description": "Let us help you with that.",
+    "sendLink": "Send link"
+  },
+  "login": {
+    "title": "Welcome back to HCI",
+    "description": "Continue building, managing and sharing your Nuxt App in minutes, not days."
+  },
+  "passwordReset": {
+    "pageName": "Password Reset",
+    "regular": {
+      "title": "Set your new Password for {email}",
+      "description": "Please use a password diferent to the previous one."
+    },
+    "errorMail": {
+      "title": "Ups... Your password reset link is broken",
+      "description": "Please re-check your email for the correct link or restart the process.",
+      "action": "Restart process"
+    },
+    "success": {
+      "title": "Password setted correctly",
+      "description": "Please go to login and type your brand new password."
+    }
+  },
+  "register": {
+    "title": "Welcome to HCI",
+    "description": "Build, manage and share your Nuxt App in minutes, not days."
   }
 }

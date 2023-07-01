@@ -1,6 +1,7 @@
 import { $fetch, FetchOptions, FetchError } from "ofetch";
 const CSRF_COOKIE = "XSRF-TOKEN";
 const CSRF_HEADER = "X-XSRF-TOKEN";
+
 interface ResponseMap {
   blob: Blob;
   text: string;
@@ -19,6 +20,7 @@ export async function $larafetch<T, R extends ResponseType = "json">(
     ...options
   }: LarafetchOptions<R> = {}
 ) {
+  const { $i18n } = useNuxtApp();
   const { API_BASE_URL, BASE_URL } = useRuntimeConfig().public;
   let token = useCookie(CSRF_COOKIE).value;
   if (
@@ -33,6 +35,12 @@ export async function $larafetch<T, R extends ResponseType = "json">(
     ...(token && { [CSRF_HEADER]: token }),
     accept: "application/json",
   };
+  if ($i18n.locale.value) {
+    headers = {
+      ...headers,
+      "Content-Language": $i18n.locale.value,
+    };
+  }
   // Only add type json if not form data.
   if (options.body instanceof FormData === false) {
     headers = {
@@ -60,10 +68,10 @@ export async function $larafetch<T, R extends ResponseType = "json">(
       redirectIfNotAuthenticated &&
       [401, 419].includes(error?.response?.status)
     ) {
-      await navigateTo("/login");
+      await navigateTo(testLocale("/login"));
     }
     if (redirectIfNotVerified && [409].includes(error?.response?.status)) {
-      await navigateTo("/verify-email");
+      await navigateTo(testLocale("/verify-email"));
     }
     throw error;
   }

@@ -27,11 +27,15 @@
       {{ $t("index.subDescription") }} Guest
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <UiButton variant="outline" to-link="/profile"> Profile Page </UiButton>
-      <UiButton v-if="authStore.isLoggedIn" @click="logout()">
-        Logout
+      <UiButton variant="outline" to-link="/profile">
+        {{ $t('profile.index.pageName') }}
       </UiButton>
-      <UiButton v-else to-link="/login"> Login </UiButton>
+      <UiButton v-if="authStore.isLoggedIn" @click="logout()">
+        {{ $t('global.logout') }}
+      </UiButton>
+      <UiButton v-else to-link="/login">
+        {{ $t('global.login') }}
+      </UiButton>
     </div>
   </div>
 </template>
@@ -39,16 +43,17 @@
 import { useAuthStore } from "~~/stores/auth";
 export default {
   setup() {
+    const { t } = useI18n()
     definePageMeta({
       layout: "main-layout",
       middleware: ["guest"],
     });
     useHead({
-      title: this.$t("index.metaTitle"),
+      title: t("index.metaTitle"),
       meta: [
         {
           name: "description",
-          content: this.$t("index.metaDescription"),
+          content: t("index.metaDescription"),
         },
       ],
     });
@@ -58,13 +63,6 @@ export default {
   methods: {
     async logout() {
       const response = await this.authStore.logout(this.$route.meta.middleware);
-    },
-    async test() {
-      const response = await $larafetch("/api/v1/user", {
-        response: true,
-        redirectIfNotAuthenticated: true,
-      });
-      console.log(response);
     },
   },
 };

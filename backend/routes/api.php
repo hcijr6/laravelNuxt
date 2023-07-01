@@ -20,7 +20,7 @@ use App\Http\Controllers\Api\PrevalidateController;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/form/prevalidation', [PrevalidateController::class, 'validateRequest'])->name('form.prevalidation');
-    Route::get('/form/test', [PrevalidateController::class, 'test'])->name('form.test');
+    Route::get('/form/test', [UserController::class, 'test'])->name('form.test');
     Route::get('/user', [UserController::class, 'show'])->name('users.show');
     Route::resource('users', UserController::class)->except(['create', 'edit']);
     Route::get('/user/rules', [UserController::class, 'rules'])->name('users.rules');

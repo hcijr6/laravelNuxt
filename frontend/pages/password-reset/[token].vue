@@ -12,24 +12,28 @@
           </div>
           <div v-if="success" class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
-              <h1 class="text-2xl font-medium text-primary">Congratulations</h1>
+              <h1 class="text-2xl font-medium text-primary">
+                {{ $t("passwordReset.success.title") }}
+              </h1>
               <span v-if="success" class="text-green-500 text-xl w-full">{{
                 success
               }}</span>
             </div>
             <p class="text-primary">
-              Please go to login and type your brand new password.
+              {{ $t("passwordReset.success.description") }}
             </p>
             <UiButton to-link="/login">
               <div class="relative flex items-center justify-center">
-                <div :class="{ hidden: sendingForm }">Sign In</div>
+                <div :class="{ hidden: sendingForm }">
+                  {{ $t("global.auth.signIn") }}
+                </div>
               </div>
             </UiButton>
           </div>
           <div v-else-if="!recoveryEmail" class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
               <h1 class="text-2xl font-medium text-primary">
-                Ups... Your password reset link is broken
+                {{ $t("passwordReset.errorMail.title") }}
               </h1>
               <span
                 v-for="message in validations.email"
@@ -39,21 +43,22 @@
               >
             </div>
             <p class="text-primary">
-              Please re-check your email for the correct link or restart the
-              process.
+              {{ $t("passwordReset.errorMail.description") }}
             </p>
             <UiButton to-link="/forgot-password">
-              <div :class="{ hidden: sendingForm }">Restart process</div>
+              <div :class="{ hidden: sendingForm }">
+                {{ $t("passwordReset.errorMail.action") }}
+              </div>
             </UiButton>
           </div>
           <div v-else class="flex w-full flex-col gap-2">
             <div class="text-2xl font-medium">
               <h1 class="text-2xl text-primary font-medium">
-                Set your new Password for {{ form.email }}
+                {{ $t("passwordReset.regular.title", { email: form.email }) }}
               </h1>
             </div>
             <p class="text-primary">
-              Please use a password diferent to the previous one.
+              {{ $t("passwordReset.regular.description") }}
             </p>
             <div class="mt-4 flex flex-col gap-4">
               <div class="flex flex-col gap-4">
@@ -62,21 +67,21 @@
                     for="password"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Password
+                      {{ $t("global.forms.password.label") }}
                       <div></div>
                     </div>
                   </label>
                   <div
                     class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
                   >
-                    <UiButton
+                    <UiInput
                       v-model="form.password"
                       type="password"
                       name="password"
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="••••••••••"
+                      :placeholder="$t('global.forms.password.placeholder')"
                     />
                   </div>
                   <span
@@ -91,26 +96,30 @@
                     for="password"
                     class="block text-sm font-medium text-primary"
                     ><div class="flex items-center gap-2">
-                      Confirm Password
+                      {{ $t("global.forms.passwordConfirmation.label") }}
                       <div></div>
                     </div>
                   </label>
                   <div
                     class="flex w-full rounded-lg text-sm shadow-sm duration-200 mt-2"
                   >
-                    <UiButton
+                    <UiInput
                       v-model="form.password_confirmation"
                       type="password"
                       name="password"
                       autocomplete="off"
                       required=""
                       spellcheck="false"
-                      placeholder="••••••••••"
+                      :placeholder="
+                        $t('global.forms.passwordConfirmation.placeholder')
+                      "
                     />
                   </div>
                 </div>
                 <UiButton :disabled="sendingForm" @click="resetPassword()">
-                  <div :class="{ hidden: sendingForm }">Send</div>
+                  <div :class="{ hidden: sendingForm }">
+                    {{ $t("global.send") }}
+                  </div>
                   <UiLoadingSpinner :loading="sendingForm"></UiLoadingSpinner>
                 </UiButton>
               </div>
@@ -119,7 +128,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-slate-900"></div>
+    <ThemeAuthPattern></ThemeAuthPattern>
   </div>
 </template>
 
@@ -133,13 +142,6 @@ export default {
     });
     useHead({
       title: "Password Reset",
-      meta: [
-        {
-          name: "description",
-          content:
-            "Streamline your web development with our cutting-edge template designed for Laravel 10 and Nuxt 3 . Save precious time and maximize your productivity with our sophisticated, turnkey solution designed by expert developers.Actual middleware: Guest",
-        },
-      ],
     });
     const route = useRoute();
     const token = route.params.token;
@@ -174,7 +176,6 @@ export default {
       this.resetErrors();
       if (response.data && response.data.status) {
         this.success = response.data.status;
-        //   navigateTo("/");
       } else {
         this.validations = response.errors;
         if (

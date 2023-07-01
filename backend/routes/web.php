@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Mail\OrderCreated;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +18,18 @@ use Illuminate\Support\Facades\Mail;
 */
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+    var_dump(['Laravel' => app()->currentLocale()]);
+    app()->setLocale('es');
+    var_dump(['Laravel' => app()->currentLocale()]);
+    $fieldValidator = Validator::make(['name' => 'H'], [
+        'name' => 'required|min:3',
+    ]);
+    if ($fieldValidator->fails()) {
+        var_dump($fieldValidator->errors());
+    }
 });
 
 Route::get('/mailTest', function () {
     Mail::to('hcijr6@gmail.com')->send(new OrderCreated());
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

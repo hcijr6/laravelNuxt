@@ -1,11 +1,9 @@
-import en from './lang/en.json';
-import es from './lang/es.json';
+import en from "./lang/en.json";
+import es from "./lang/es.json";
 
 export default defineI18nConfig(() => ({
   legacy: false,
   locale: "en",
-  messages: {
-    en,
-    es
-  },
+  fallbackLocale: "en",
+  baseUrl: "http://localhost:3000/",
 }));

@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/i18n"],
+  modules: ["@vueuse/nuxt", "@pinia/nuxt", "@nuxtjs/i18n", "nuxt-headlessui"],
   css: ["@/assets/css/main.css"],
   postcss: {
     plugins: {
@@ -19,11 +19,25 @@ export default defineNuxtConfig({
     dirs: ["./utils"],
   },
   i18n: {
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected'
-    },
+    defaultLocale: "en",
     vueI18n: "./i18n.config.ts",
+    locales: [
+      {
+        name: "English",
+        code: "en",
+        iso: "en-US",
+        file: "en.json",
+        image: "/img/lang/en.png",
+      },
+      {
+        name: "Español",
+        code: "es",
+        iso: "es-ES",
+        file: "es.json",
+        image: "/img/lang/es.png",
+      },
+    ],
+    lazy: true,
+    langDir: "lang",
   },
-  plugins: [{ src: "./plugins/i18n-plugin.js", mode: "client" }],
 });

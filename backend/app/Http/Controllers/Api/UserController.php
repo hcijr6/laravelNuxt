@@ -13,6 +13,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
+        // $this->middleware('localization');
         $this->middleware('auth:sanctum')->except('rules', 'singleValidation');
     }
     public function show(Request $request)
@@ -54,14 +55,20 @@ class UserController extends Controller
         return response()->json(User::$rules, 200);
     }
     public function singleValidation(Request $request)
-    {   $rules=[
+    {
+        $rules = [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string','min:8'],
+            'password' => ['required', 'string', 'min:8'],
         ];
         $validator = Validator::make($request->all(), [
             $request->field => $rules[$request->field],
         ]);
         $validator->validate();
         return response()->json(['message' => 'Validation successfull'], 200);
+    }
+    public function test()
+    {
+        return json_encode(['test' => 'asdf']);
+
     }
 }

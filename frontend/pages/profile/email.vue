@@ -5,31 +5,34 @@
     <h1
       class="max-w-4xl mx-auto text-5xl font-medium tracking-tight text-primary sm:text-7xl"
     >
-      Private page that requires an verified email.
+      <span class="relative"
+        ><span class="underline">{{ $t("profile.email.title.0") }}</span></span
+      >
+      {{ $t("profile.email.title.1") }}
     </h1>
     <p class="max-w-2xl mx-auto mt-6 text-lg tracking-tight text-primary">
-      Streamline your web development with our cutting-edge template designed
-      for
+      {{ $t("profile.email.description.0") }}
       <a
         href="https://laravel.com/"
         class="font-semibold text-[#FF2D20] underline"
         >Laravel 10</a
       >
-      and
+      {{ $t("profile.email.description.1") }}
       <a href="https://nuxt.com/" class="font-semibold text-[#00DC82] underline"
         >Nuxt 3</a
       >
-      . Save precious time and maximize your productivity with our
-      sophisticated, turnkey solution designed by expert developers.
+      {{ $t("profile.email.description.2") }}
     </p>
     <p
       class="max-w-2xl mx-auto mt-6 text-lg font-semibold tracking-tight text-primary"
     >
-      Actual middleware: verifiedEmail
+      {{ $t("profile.email.subDescription") }} verifiedEmail
     </p>
     <div class="flex justify-center gap-3 mt-10">
-      <UiButton variant="outline" to-link="/">Home</UiButton>
-      <UiButton to-link="/profile">Profile Page</UiButton>
+      <UiButton variant="outline" to-link="/">{{
+        $t("index.pageName")
+      }}</UiButton>
+      <UiButton to-link="/profile">{{ $t("profile.index.pageName") }}</UiButton>
     </div>
   </div>
 </template>

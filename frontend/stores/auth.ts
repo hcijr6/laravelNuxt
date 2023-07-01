@@ -96,7 +96,7 @@ export const useAuthStore = defineStore("auth_store", {
             requiredMiddlewares.has(middleware)
           );
           if (requiresAuth) {
-            await navigateTo("/login");
+            await navigateTo(testLocale("/login"));
           }
         }
         return true;
