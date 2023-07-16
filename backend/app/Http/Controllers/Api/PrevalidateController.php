@@ -67,11 +67,11 @@ class PrevalidateController extends Controller
     /**
      * Get the request class based on the className and validationSource.
      *
-     * @param  string  $className
-     * @param  string  $validationSource
+     * @param string $className
+     * @param string $validationSource
      * @return string|null
      */
-    private function getRequestClass($className, $validationSource)
+    private function getRequestClass(string $className, string $validationSource)
     {
         $namespace = ($validationSource == 'Request') ? 'App\\Http\\Requests\\' : 'App\\Models\\';
         $requestClass = $namespace . $className;
