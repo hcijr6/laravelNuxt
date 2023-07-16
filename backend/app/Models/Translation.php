@@ -13,5 +13,22 @@ class Translation extends Model
         'key',
         'value',
     ];
-    
+    /**
+     * The validation rules for the model.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'code' => ['required', 'string'],
+        'key' => ['required', 'string'],
+        'value' => ['required', 'string'],
+    ];
+    public function rules()
+    {
+        return [
+            'code' => ['required', 'string'],
+            'key' => ['required', 'string'],
+            'value' => ['required', 'string'],
+        ];
+    }
 }

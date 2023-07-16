@@ -151,7 +151,6 @@ export default {
       const response = await this.authStore.login(credentials);
       resetErrors(this);
       if (response.data) {
-        this.authStore.user = response.data;
         navigateTo(testLocale("/"));
       } else {
         this.validations = response.errors;

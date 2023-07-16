@@ -96,7 +96,6 @@
       </div>
     </div>
     <ThemeAuthPattern></ThemeAuthPattern>
-
   </div>
 </template>
 

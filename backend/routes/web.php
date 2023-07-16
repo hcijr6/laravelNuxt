@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\TranslationController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\OrderCreated;
+use App\Models\Translation;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,19 +21,11 @@ use Illuminate\Validation\ValidationException;
 |
 */
 
-Route::get('/', function () {
-    var_dump(['Laravel' => app()->currentLocale()]);
-    app()->setLocale('es');
-    var_dump(['Laravel' => app()->currentLocale()]);
-    $fieldValidator = Validator::make(['name' => 'H'], [
-        'name' => 'required|min:3',
-    ]);
-    if ($fieldValidator->fails()) {
-        var_dump($fieldValidator->errors());
-    }
-});
+Route::get('/translations/export', [TranslationController::class, 'exportTranslations']);
+Route::get('/translations/import', [TranslationController::class, 'processJson']);
 
 Route::get('/mailTest', function () {
     Mail::to('hcijr6@gmail.com')->send(new OrderCreated());
 });
+
 require __DIR__ . '/auth.php';

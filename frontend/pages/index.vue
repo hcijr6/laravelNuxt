@@ -1,7 +1,9 @@
 <template>
-  <div class="container text-center py-28">
+  <div
+    class="container text-center min-h-[80vh] items-center justify-center flex flex-col "
+  >
     <h1
-      class="max-w-4xl mx-auto text-5xl font-medium tracking-tight text-primary sm:text-7xl"
+      class="max-w-4xl mx-auto text-fluid-xl font-medium tracking-tight text-primary leading-none"
     >
       <span class="relative"
         ><span class="underline">{{ $t("index.title.0") }}</span></span
@@ -28,13 +30,13 @@
     </p>
     <div class="flex justify-center gap-3 mt-10">
       <UiButton variant="outline" to-link="/profile">
-        {{ $t('profile.index.pageName') }}
+        {{ $t("profile.index.pageName") }}
       </UiButton>
       <UiButton v-if="authStore.isLoggedIn" @click="logout()">
-        {{ $t('global.logout') }}
+        {{ $t("global.logout") }}
       </UiButton>
       <UiButton v-else to-link="/login">
-        {{ $t('global.login') }}
+        {{ $t("global.login") }}
       </UiButton>
     </div>
   </div>
@@ -43,7 +45,7 @@
 import { useAuthStore } from "~~/stores/auth";
 export default {
   setup() {
-    const { t } = useI18n()
+    const { t } = useI18n();
     definePageMeta({
       layout: "main-layout",
       middleware: ["guest"],

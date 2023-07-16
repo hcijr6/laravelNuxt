@@ -6,17 +6,17 @@
       active: loading,
     }"
   >
-    <div class="flex items-center justify-center w-20 h-5 gap-2 loader">
+    <div class="flex items-center justify-center  h-5 gap-2 loader">
       <div
-        class="w-[7px] h-[7px] bg-primary-foreground rounded-lg"
+        class="w-[7px] h-[7px] bg-primary rounded-lg"
         :class="{ 'animate-pulse': loading }"
       ></div>
       <div
-        class="w-[7px] h-[7px] bg-primary-foreground rounded-lg"
+        class="w-[7px] h-[7px] bg-primary rounded-lg"
         :class="{ 'animate-pulse': loading }"
       ></div>
       <div
-        class="w-[7px] h-[7px] bg-primary-foreground rounded-lg"
+        class="w-[7px] h-[7px] bg-primary rounded-lg"
         :class="{ 'animate-pulse': loading }"
       ></div>
     </div>

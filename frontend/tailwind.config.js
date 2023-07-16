@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "20px",
       screens: {
         "2xl": "1248px",
       },
@@ -19,6 +19,19 @@ module.exports = {
     extend: {
       backgroundImage: {
         'mainPattern': "var(--pattern)",
+      },
+      fontSize: {
+        'fluid-xl': 'clamp(2.5rem, 1.8333333333333335rem + 3.3333333333333335vw, 4.5rem)',
+        'fluid-lg': 'clamp(3.27rem, calc(2.31rem + 4.79vw), 3.8rem)',
+      },
+      gridTemplateColumns: {
+        'fill-15': 'repeat(auto-fill, minmax(15rem, 1fr))',
+        'fill-25': 'repeat(auto-fill, minmax(25, 1fr))',
+        // etc.
+      },
+      spacing: {
+        'fluid-1': 'clamp(1.31rem, calc(0.65rem + 3.29vw), 3.00rem)',
+        'fluid-2': 'clamp(1.31rem, calc(0.07rem + 6.22vw), 4.50rem)',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -80,5 +93,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // ...
+  ],
 };

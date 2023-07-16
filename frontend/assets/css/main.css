@@ -37,8 +37,9 @@
     --solid: 222 47% 11%;
     --solid-foreground: 0 0% 100%;
 
-    --pattern:url('/img/pattern.svg');
+    --pattern: url('/img/pattern.svg');
   }
+
   .dark-theme {
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;
@@ -72,7 +73,7 @@
 
     --solid: 0 0% 100%;
     --solid-foreground: 0 0% 2%;
-    --pattern:url('/img/patternBlack.svg');
+    --pattern: url('/img/patternBlack.svg');
 
   }
 }
@@ -86,4 +87,8 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+#__nuxt {
+  @apply w-full overflow-auto;
 }

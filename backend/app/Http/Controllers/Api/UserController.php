@@ -13,17 +13,25 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('localization');
-        $this->middleware('auth:sanctum')->except('rules', 'singleValidation');
+        $this->middleware('auth:sanctum')->except('rules');
     }
     public function show(Request $request)
     {
-        return response()->json($request->user());
+        $user = $request->user()->load('roles.permissions', 'permissions');
+        $rolePermissions = collect();
+        foreach ($user->roles as $role) {
+            $rolePermissions = $rolePermissions->concat($role->permissions->pluck('name'));
+        }
+        $userPermissions = $user->permissions->pluck('name');
+        $allPermissions = $rolePermissions->concat($userPermissions)->unique();
+        $user->setRelation('roles', $user->roles->pluck('name'));
+        $user->unsetRelation('permissions');
+        $user->all_permissions = $allPermissions;
+        return response()->json($user);
     }
     public function store(Request $request)
     {
         $request->validate(User::$rules);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -46,7 +54,7 @@ class UserController extends Controller
         if ($user->delete()) {
             return response()->json([
                 "success" => true,
-                "message" => "User deleted successfully."
+                "message" => __("User deleted successfully.")
             ], 200);
         }
     }
@@ -54,21 +62,34 @@ class UserController extends Controller
     {
         return response()->json(User::$rules, 200);
     }
-    public function singleValidation(Request $request)
+    public function checkPermission(Request $request)
     {
-        $rules = [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string', 'min:8'],
-        ];
-        $validator = Validator::make($request->all(), [
-            $request->field => $rules[$request->field],
-        ]);
-        $validator->validate();
-        return response()->json(['message' => 'Validation successfull'], 200);
+        $permission = $request->input('permission');
+        if ($permission) {
+            if ($request->user()->can($permission)) {
+                return response()->json([
+                    'message' => __("User has permission."),
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => __("User does not have permission."),
+                ], 422);
+            }
+        }
     }
-    public function test()
+    public function checkRole(Request $request)
     {
-        return json_encode(['test' => 'asdf']);
-
+        $role = $request->input('role');
+        if ($role) {
+            if ($request->user()->hasRole($role)) {
+                return response()->json([
+                    'message' => __("User has role."),
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => __("User does not have role."),
+                ], 422);
+            }
+        }
     }
 }

@@ -56,7 +56,7 @@ export default {
               link: "hover:underline text-primary",
             },
             size: {
-              default: "py-2 px-4",
+              default: "py-2 px-4 min-h-[2.5rem]",
               sm: "h-9 px-3",
               md: "h-11 px-5",
               lg: "h-11 px-8",

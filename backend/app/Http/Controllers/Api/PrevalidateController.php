@@ -31,7 +31,7 @@ class PrevalidateController extends Controller
         $requestClass = $this->getRequestClass($className, $validationSource);
         // echo $requestClass;
         if (!$requestClass) {
-            return response()->json(['error' => 'Invalid request. Invalid className or validationSource.' . $requestClass], 422);
+            return response()->json(['error' => 'Invalid request. Invalid className - ' . $className . ' or validationSource. - ' . $validationSource], 422);
         }
 
         // Get the validation rules from the request class

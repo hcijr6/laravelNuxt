@@ -23,11 +23,14 @@ export async function $larafetch<T, R extends ResponseType = "json">(
   const { $i18n } = useNuxtApp();
   const { API_BASE_URL, BASE_URL } = useRuntimeConfig().public;
   let token = useCookie(CSRF_COOKIE).value;
+
   if (
     process.client &&
     ["post", "delete", "put", "patch"].includes(options?.method?.toLowerCase())
   ) {
-    await initCsrf();
+    if (!token) {
+      await initCsrf();
+    }
     token = getCookie(CSRF_COOKIE);
   }
   let headers: any = {
@@ -41,7 +44,6 @@ export async function $larafetch<T, R extends ResponseType = "json">(
       "Content-Language": $i18n.locale.value,
     };
   }
-  // Only add type json if not form data.
   if (options.body instanceof FormData === false) {
     headers = {
       ...headers,

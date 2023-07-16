@@ -1,12 +1,4 @@
 import { defineStore } from "pinia";
-
-type User = {
-  name: string;
-  email?: string;
-  permission: string;
-  email_verified_at: string;
-};
-
 export const useAuthStore = defineStore("auth_store", {
   state: () => ({
     user: null,
@@ -16,7 +8,7 @@ export const useAuthStore = defineStore("auth_store", {
 
   actions: {
     // Log in with provided credentials
-    async login(credentials: object) {
+    async login(credentials) {
       const petition = {
         response: true,
         method: "post",
@@ -26,7 +18,7 @@ export const useAuthStore = defineStore("auth_store", {
     },
 
     // Register a new user with provided credentials
-    async register(credentials: object, redirect = false) {
+    async register(credentials, redirect = false) {
       const petition = {
         response: true,
         method: "post",
@@ -34,9 +26,30 @@ export const useAuthStore = defineStore("auth_store", {
       };
       return await submitRequest($larafetch("/register", petition));
     },
-
+    checkPermissions(requiredPermissions) {
+      if (!this.user || !this.user.all_permissions || !Array.isArray(this.user.all_permissions)) {
+        return false; // Si el usuario no tiene permisos o no es válido, retorna falso
+      }
+      // Si se proporciona una cadena de texto en lugar de un array, conviértelo en un array
+      if (typeof requiredPermissions === 'string') {
+        requiredPermissions = [requiredPermissions];
+      }
+      // Verifica si el usuario tiene todos los permisos requeridos
+      return requiredPermissions.every(permission => this.user.all_permissions.includes(permission));
+    },
+    checkRole(requiredRoles) {
+      if (!this.user || !this.user.roles || !Array.isArray(this.user.roles)) {
+        return false; // Si el usuario no tiene permisos o no es válido, retorna falso
+      }
+      // Si se proporciona una cadena de texto en lugar de un array, conviértelo en un array
+      if (typeof requiredRoles === 'string') {
+        requiredRoles = [requiredRoles];
+      }
+      // Verifica si el usuario tiene todos los permisos requeridos
+      return requiredRoles.every(role => this.user.roles.includes(role));
+    },
     // Send a forgot password request with provided credentials
-    async forgotPassword(credentials: object) {
+    async forgotPassword(credentials) {
       const petition = {
         response: true,
         method: "post",
@@ -46,7 +59,7 @@ export const useAuthStore = defineStore("auth_store", {
     },
 
     // Reset password with provided credentials
-    async resetPassword(credentials: object) {
+    async resetPassword(credentials) {
       const petition = {
         response: true,
         method: "post",
@@ -58,7 +71,7 @@ export const useAuthStore = defineStore("auth_store", {
     // Fetch the currently logged in user's data
     async fetchCurrentUser(redirect = false) {
       try {
-        const response: any = await $larafetch("/api/v1/user", {
+        const response = await $larafetch("/api/v1/user", {
           response: true,
         });
         this.user = response;
@@ -71,7 +84,7 @@ export const useAuthStore = defineStore("auth_store", {
     // Send email verification notification
     async sendEmailNotification() {
       try {
-        const response: any = await $larafetch(
+        const response = await $larafetch(
           "/email/verification-notification",
           {
             response: true,
@@ -114,6 +127,25 @@ export const useAuthStore = defineStore("auth_store", {
       } else {
         return false;
       }
+    },
+    hasPermission: (state) => (permission) => {
+      return (
+        state.user &&
+        Array.isArray(state.user.permissions) &&
+        state.user.permissions.length > 0 &&
+        state.user.permissions.some(
+          (userPermission) => userPermission.name === permission
+        )
+      );
+    },
+
+    hasRole: (state) => (role) => {
+      return (
+        state.user &&
+        Array.isArray(state.user.roles) &&
+        state.user.roles.length > 0 &&
+        state.user.roles.some((userRole) => userRole.name === role)
+      );
     },
   },
 });
