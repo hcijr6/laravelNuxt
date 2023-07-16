@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Translation;
@@ -92,7 +92,7 @@ class TranslationController extends Controller
         }
 
         if ( $searchTerm ) {
-            $translations->whereLike( [ 'key', 'value' ], $searchTerm );
+            DB::whereLikeAttributes( $translations, [ 'key', 'value' ], $searchTerm );
         }
 
         $results = $translations->limit( 16 )->get();
