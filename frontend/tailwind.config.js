@@ -27,7 +27,6 @@ module.exports = {
       gridTemplateColumns: {
         'fill-15': 'repeat(auto-fill, minmax(15rem, 1fr))',
         'fill-25': 'repeat(auto-fill, minmax(25, 1fr))',
-        // etc.
       },
       spacing: {
         'fluid-1': 'clamp(1.31rem, calc(0.65rem + 3.29vw), 3.00rem)',

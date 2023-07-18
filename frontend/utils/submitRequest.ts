@@ -11,7 +11,7 @@ export async function submitRequest<T>(
     return { data, errors: null };
   } catch (error) {
     if (!(error instanceof FetchError)) throw error;
-    if (error.response?.status !== 422) throw error;
+    if (error.response?.status !== 422 &&  error.response?.status !== 404) throw error;
     const errors = error.data?.errors || {};
     await onValidationError?.(errors);
     return { data: null, errors };

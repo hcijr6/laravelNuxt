@@ -75,6 +75,9 @@ export async function $larafetch<T, R extends ResponseType = "json">(
     if (redirectIfNotVerified && [409].includes(error?.response?.status)) {
       await navigateTo(testLocale("/verify-email"));
     }
+    // if([404].includes(error?.response?.status)){
+    //   return error;
+    // }
     throw error;
   }
 }

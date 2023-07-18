@@ -1,9 +1,6 @@
 <template>
   <UiButton variant="outline" size="logo" @click="toggleTheme()">
-    <SunIcon
-      v-if="userTheme == 'dark-theme'"
-      class="h-5 w-5 text-center"
-    ></SunIcon>
+    <SunIcon v-if="userTheme == 'dark-theme'" class="h-5 w-5 text-center"></SunIcon>
     <MoonIcon v-else class="h-5 w-5 text-center"></MoonIcon>
   </UiButton>
 </template>

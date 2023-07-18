@@ -30,6 +30,9 @@
       <UiButton to-link="/admin/i18n">
         {{ $t("i18n.pageName") }}
       </UiButton>
+      <UiButton to-link="/admin/posts">
+        {{ $t("admin.posts.pageName") }}
+      </UiButton>
     </div>
   </div>
 </template>

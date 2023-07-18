@@ -3,12 +3,7 @@
 use App\Http\Controllers\Api\TranslationController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\OrderCreated;
-use App\Models\Translation;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +16,6 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('/translations/export', [TranslationController::class, 'exportTranslations']);
 Route::get('/translations/import', [TranslationController::class, 'processJson']);
 
 Route::get('/mailTest', function () {

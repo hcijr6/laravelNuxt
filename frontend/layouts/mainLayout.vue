@@ -89,6 +89,7 @@
           </div>
         </nav>
       </header>
+      <ThemeBreadcrumbs></ThemeBreadcrumbs>
       <slot />
     </Body>
   </Html>
