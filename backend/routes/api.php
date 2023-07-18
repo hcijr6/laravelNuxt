@@ -21,6 +21,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/translations/last/{lang}', [TranslationController::class, 'getLastTranslations']);
     Route::post('/translations/search', [TranslationController::class, 'search']);
 
+    
     Route::apiResource('/post', PostController::class);
     Route::post('/posts/search', [PostController::class, 'search']);
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="container pt-2 flex justify-star items-center w-full">
+  <div class="container pt-2 flex justify-start items-center w-full">
     <div class="w-full">
       <h1 class="mx-auto text-xl font-medium tracking-tight text-primary pt-4 pb-2">
         <span class="relative">

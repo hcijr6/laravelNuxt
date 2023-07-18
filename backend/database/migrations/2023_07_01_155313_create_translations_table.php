@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->string('key');
             $table->text('value');
+            $table->integer('level')->nullable();
             $table->timestamps();
         });
     }

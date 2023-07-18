@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::get('/translations/import', [TranslationController::class, 'processJson']);
+Route::get('/translations/import', [TranslationController::class, 'import']);
+Route::get('/translations/export', [TranslationController::class, 'export']);
 
 Route::get('/mailTest', function () {
     Mail::to('hcijr6@gmail.com')->send(new OrderCreated());
