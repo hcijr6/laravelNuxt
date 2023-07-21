@@ -4,11 +4,12 @@
   <Body class="flex flex-col items-center justify-start h-screen w-screen max-w-screen bg-primary-foreground">
     <header class="py-2 border-b border-input container">
       <nav class="relative z-50 flex justify-between">
-        <div class="flex items-center md:gap-x-12">
-          <UiButton size="logo" variant="invertSolid" to-link="/">
+        <NuxtLink :to="localePath('/')" class="flex items-center gap-2">
+          <UiButton size="logo" variant="invertSolid">
             <SvgLogo class="w-5 h-5"></SvgLogo>
           </UiButton>
-        </div>
+          <span class="font-semibold underline text-lg">hcijr6/ui</span>
+        </NuxtLink>
         <div class="flex items-center gap-x-5 md:gap-x-8">
           <div class="flex gap-2">
             <Menu>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -42,15 +43,10 @@ class PrevalidateController extends Controller
             // Perform validation for the entire request data
             $validator = Validator::make($request->all(), $rules);
             $validator->validate();
-
         } else {
             // Check if the validationField exists in the rules
             if (!isset($rules[$validationField])) {
                 return response()->json(['error' => 'Invalid field. The specified validationField does not exist.'], 422);
-            }
-            $confirmedKey = array_search("confirmed", $rules[$validationField]);
-            if ($confirmedKey !== false) {
-                unset($rules[$validationField][$confirmedKey]);
             }
 
             // Perform validation for the specified field

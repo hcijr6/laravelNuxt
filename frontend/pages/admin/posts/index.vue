@@ -3,9 +3,8 @@
         <div class="w-full">
             <h1 class="mx-auto text-xl font-medium tracking-tight text-primary pt-4 pb-2">
                 <span class="relative">
-                    <span class="underline">{{ $t("admin.posts.title.0") }}</span>
+                    <span class="">{{ $t("admin.posts.title") }}</span>
                 </span>
-                {{ $t("admin.posts.title.1") }}
             </h1>
             <div class="flex gap-2 flex-wrap">
                 <div class="grow sm:w-auto w-full">
@@ -41,7 +40,7 @@
                     </Float>
                 </Listbox>
                 <div>
-                    <UiButton>
+                    <UiButton to-link="/admin/posts/new">
                         <div class="flex gap-2 items-center justify-center">
                             <span class="leading-none">{{ $t("global.add") }}</span>
                             <PlusCircleIcon class="w-4 h-4"></PlusCircleIcon>
@@ -57,11 +56,13 @@
                 class="bg-solid-foreground border-input border hover:border-solid rounded-md drop-shadow p-3 flex flex-col justify-center items-center gap-2 cursor-pointer min-h-[10rem]">
                 <UiLoadingSpinner :loading="loading"></UiLoadingSpinner>
             </div>
-            <div v-for="post in postStore.posts"
+            <div v-for="post in  postStore.posts"
+                @click="navigateTo(testLocale(`/admin/posts/${post.id}/${actualLocale.code}`))"
                 class="bg-solid-foreground border-input border hover:border-solid rounded-md drop-shadow p-3 flex flex-col justify-between gap-2 cursor-pointer">
                 <div class="flex flex-col justify-start items-start h-full gap-1">
                     <span class="text-base font-semibold leading-1 line-clamp-2 min-h-[2rem]">{{ post.title }}</span>
-                    <span class="text-sm line-clamp-6 hyphens-auto sm:min-h-[6.5625rem]">{{ post.content }}</span>
+                    <span class="text-sm line-clamp-6 hyphens-auto sm:min-h-[6.5625rem] max-w-full"
+                        v-html="post.content"></span>
                 </div>
             </div>
         </div>
@@ -138,7 +139,7 @@ export default {
             this.loading = true;
             try {
                 var response = await submitRequest($larafetch("/api/v1/posts/search", petition));
-                console.log(response)
+                // console.log(response)
                 this.postStore.posts = [];
                 if (response.data) {
                     this.postStore.posts = response.data;

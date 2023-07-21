@@ -2,11 +2,7 @@
   <button v-if="!toLink" :class="buttonClasses({ variant, size, group })">
     <slot />
   </button>
-  <NuxtLink
-    v-else
-    :to="localePath(toLink)"
-    :class="buttonClasses({ variant, size, group })"
-  >
+  <NuxtLink v-else :to="localePath(toLink)" :class="buttonClasses({ variant, size, group })">
     <slot />
   </NuxtLink>
 </template>
@@ -36,7 +32,7 @@ export default {
   computed: {
     buttonClasses() {
       return cva(
-        "inline-flex drop-shadow items-center justify-center rounded-lg text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:opacity-80 disabled:pointer-events-none ring-offset-background",
+        "inline-flex drop-shadow-sm items-center justify-center rounded-lg text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:opacity-80 disabled:pointer-events-none ring-offset-background",
         {
           variants: {
             variant: {
@@ -61,8 +57,10 @@ export default {
               md: "h-11 px-5",
               lg: "h-11 px-8",
               full: "w-full",
-              logo: "p-2",
+              logo: "p-2 min-w-[2.2rem] min-h-[2.2rem]",
               logoXl: "p-3",
+              logoSm: 'p-[6px]',
+              none: ""
             },
             group: {
               default: "",
@@ -77,6 +75,5 @@ export default {
 </script>
 
 <style scoped>
-.cva {
-}
+.cva {}
 </style>

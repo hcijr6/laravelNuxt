@@ -146,7 +146,7 @@ export default {
     const route = useRoute();
     const token = route.params.token;
     const recoveryEmail = route.query.email ? route.query.email : false;
-    console.log(route.params.token, route.query.email);
+    // console.log(route.params.token, route.query.email);
     const authStore = useAuthStore();
     return { authStore, token, recoveryEmail };
   },
@@ -172,7 +172,7 @@ export default {
         password_confirmation: this.form.password,
       };
       const response = await this.authStore.resetPassword(credentials);
-      console.log(response);
+      // console.log(response);
       this.resetErrors();
       if (response.data && response.data.status) {
         this.success = response.data.status;

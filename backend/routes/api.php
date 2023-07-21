@@ -24,4 +24,5 @@ Route::group(['prefix' => 'v1'], function () {
     
     Route::apiResource('/post', PostController::class);
     Route::post('/posts/search', [PostController::class, 'search']);
+    Route::get('/post/{post}/{locale}', [PostController::class, 'showLang']);
 });

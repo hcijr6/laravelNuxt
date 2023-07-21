@@ -51,23 +51,35 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $post = new Post();
-        $post->user_id = $request->input('user_id');
+        $post->user_id = $request->user()->id;
         $post->save();
         $post->setTranslation('title', $request->input('title'), $request->input('locale'));
-        $post->setTranslation('description', $request->input('description'), $request->input('locale'));
+        $post->setTranslation('content', $request->input('content'), $request->input('locale'));
         return response()->json($post, 201);
     }
 
     public function update(UpdateRequest $request, Post $post)
     {
         $post->setTranslation('title', $request->input('title'), $request->input('locale'));
-        $post->setTranslation('description', $request->input('description'), $request->input('locale'));
+        $post->setTranslation('content', $request->input('content'), $request->input('locale'));
         return response()->json($post);
     }
 
     public function show(Post $post)
     {
         return response()->json($post);
+    }
+    public function showLang(Post $post, $locale)
+    {
+        $postLang = $post->getFullTranslation($locale);
+        if ($postLang) {
+            $post->lang = $postLang;
+            return response()->json($post);
+        } else {
+            return response()->json([
+                'errors' => [__("There's no translation for this lang " . $locale)],
+            ], 422);
+        }
     }
 
     public function destroy(Post $post)

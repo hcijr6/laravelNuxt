@@ -29,6 +29,14 @@ trait TranslatableTrait
         return $translation ? $translation->$attribute : null;
     }
 
+    public function getFullTranslation($locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        $translation = $this->translations()->where('locale', $locale)->first();
+
+        return $translation ? $translation : null;
+    }
+
     public function setTranslation($attribute, $value, $locale = null)
     {
         $locale = $locale ?? app()->getLocale();

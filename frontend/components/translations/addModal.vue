@@ -190,7 +190,7 @@ export default {
     async storeTranslation() {
       this.sendingForm = true;
       const response = await this.translationStore.store(this.form, false);
-      console.log(response);
+      // console.log(response);
       resetErrors(this);
       this.sendingForm = false;
       if (response.data) {

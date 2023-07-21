@@ -32,14 +32,10 @@ export const useAdminPostStore = defineStore('post', {
             }
             return response;
         },
-        async show(postId) {
+        async show(postId, lang) {
             try {
-                const response = await submitRequest($larafetch(`/api/v1/post/${postId}`));
-                if (response.data) {
-                    return response.data;
-                } else {
-                    return null;
-                }
+                const response = await submitRequest($larafetch(`/api/v1/post/${postId}/${lang}`));
+                return response;
             } catch (error) {
                 console.log(error);
             }
@@ -52,7 +48,7 @@ export const useAdminPostStore = defineStore('post', {
                     method: 'put',
                     body: post,
                 };
-                const response = await submitRequest($larafetch(`/api/v1/post/${post.id}`, petition));
+                const response = await submitRequest($larafetch(`/api/v1/post/${post.postId}`, petition));
                 console.log(response)
                 if (response.data) {
                     if (refresh) {

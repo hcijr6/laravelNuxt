@@ -130,7 +130,7 @@ export default {
         email: this.authStore.forgotPasswordEmail,
       };
       const response = await this.authStore.forgotPassword(credentials);
-      console.log(response);
+      // console.log(response);
       this.resetErrors();
       if (response.data) {
         if (response.data.status) {

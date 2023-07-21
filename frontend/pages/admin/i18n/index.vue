@@ -167,7 +167,7 @@ export default {
           this.translationStore.translations = [];
           // console.log(error);
           if (error.name === "AbortError") {
-            console.log("Request canceled");
+            // console.log("Request canceled");
           } else {
             // console.log(error);
             this.loading = false;
